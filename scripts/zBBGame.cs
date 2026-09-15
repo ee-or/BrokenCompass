@@ -2227,13 +2227,21 @@ function updateTimers(%obj){
       %time = game.formatTime((60 * %obj.lockOutTime) - (getSimTime() - %obj.lastFired));
    }
 
-   if((60 * %obj.lockOutTime) - (getSimTime() - %obj.lastFired) < 0){
+  
+   if(%obj.mode !$= "Orbital" &&(60 * %obj.lockOutTime) - (getSimTime() - %obj.lastFired) < 0){
       %time =  "00:00";
    }
-   %offsetDir = %obj.team == 1 ? -0.15 : 0.15;
+   else if(((60 * %obj.lockOutTime) - Game.turtleTime) < 0){
+
+      %time =  "00:00";
+   }
+
+   %txtSPC = %obj.team == 1 ? -0.15 : 0.15;// spacing for the digits to be displayed on the switch
+   %disOffset = %obj.team == 1 ? "0" : -0.35; // 0 is a string do to scripting bug other wise it always returns 0 no matter the team
+   //error(%disOffset SPC %obj.team  SPC (%obj.team == 1));
    %rot = %obj.team == 1 ? "0 0 1 0" : "0 0 1 180";
    for(%i = 0; %i < 5; %i++){
-      %posOffset = vectorAdd(%obj.displayPos, %i * %offsetDir SPC "0 0");
+      %posOffset = vectorAdd(%obj.displayPos, (%i * %txtSPC) + %disOffset SPC "0 0");
       %digit = getSubStr(%time, %i, 1);
 
 

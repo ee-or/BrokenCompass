@@ -8,8 +8,7 @@
 
 //--- MISSION STRING BEGIN ---
 //[CTF]600 points to win
-//Changes: Flat terrain contouring, Gen spam forcefields
-//(Editing: =Sabre=, Forcefields: Powdahound)
+//Changes: Flat terrain contouring
 //Mirrored: DarkTiger
 //--- MISSION STRING END ---
 
@@ -1050,79 +1049,6 @@ new SimGroup(MissionGroup) {
 
 			providesPower = "1";
 			powerCount = "1";
-
-			new ForceFieldBare(FF) {
-				position = "-421.873 500.813 136.929";
-				rotation = "-0.787697 -0.435449 -0.435796 103.501";
-				scale = "6.9408 6.6683 0.330153";
-				nameTag = "Base";
-				dataBlock = "powdaTeamFieldBlue";
-				lockCount = "0";
-				homingCount = "0";
-
-				pz = "11955";
-				locked = "false";
-				velocityMod = "1.02";
-				Target = "57";
-				gravityMod = "0";
-				team = "0";
-				appliedForce = "0 0 0";
-				originalscale = "6.9408 6.6683 0.330153";
-			};
-			new ForceFieldBare(FF) {
-				position = "-432.676 507.86 136.913";
-				rotation = "-0.787697 -0.435449 -0.435796 103.501";
-				scale = "6.9408 6.6683 0.330153";
-				nameTag = "Base";
-				dataBlock = "powdaTeamFieldBlue";
-				lockCount = "0";
-				homingCount = "0";
-
-				pz = "11958";
-				locked = "false";
-				velocityMod = "1.02";
-				Target = "58";
-				gravityMod = "0";
-				team = "0";
-				appliedForce = "0 0 0";
-				originalscale = "6.9408 6.6683 0.330153";
-			};
-			new ForceFieldBare(FF) {
-				position = "415.122 -506.805 136.948";
-				rotation = "-0.36827 0.65715 0.657671 139.536";
-				scale = "6.9408 6.6683 0.330153";
-				nameTag = "Base";
-				dataBlock = "powdaTeamFieldBlue";
-				lockCount = "0";
-				homingCount = "0";
-
-				pz = "11960";
-				locked = "false";
-				velocityMod = "1.02";
-				Target = "59";
-				gravityMod = "0";
-				team = "0";
-				appliedForce = "0 0 0";
-				originalscale = "6.9408 6.6683 0.330153";
-			};
-			new ForceFieldBare(FF) {
-				position = "426.007 -513.725 136.932";
-				rotation = "-0.36827 0.65715 0.657671 139.536";
-				scale = "6.9408 6.6683 0.330153";
-				nameTag = "Base";
-				dataBlock = "powdaTeamFieldBlue";
-				lockCount = "0";
-				homingCount = "0";
-
-				pz = "11962";
-				locked = "false";
-				velocityMod = "1.02";
-				Target = "60";
-				gravityMod = "0";
-				team = "0";
-				appliedForce = "0 0 0";
-				originalscale = "6.9408 6.6683 0.330153";
-			};
 		};
 	};
 	new SimGroup(ObserverDropPoints) {

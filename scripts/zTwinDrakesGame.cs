@@ -3,7 +3,7 @@
 $dragon::fireTime = 1000 * 20;
 $dragon::burn = 0;//leave zero
 $dragon::burnBoltEnable = 0; // enable burning on dragon bolt
-$dragon::dwUnlockTime = 8; // dark weapon unlock
+$dragon::dwUnlockTime = 10; // dark weapon unlock
 $dragon::dragonTimer = 3; // dragon fire use
 datablock ParticleData(midMapSmokeParticle) {
    dragCoefficient = "0";
@@ -96,7 +96,7 @@ function DragonFireTrig::onEnterTrigger(%data, %trigger, %player){
       if(getSimTime() - game.firstTrig > (60000 * $dragon::dwUnlockTime)){// enable after 15 min
          game.firstTrig = getSimTime();
          %strike = 0;
-         SEStrike::onCollision(SEStrike, bigWep, %player, 1);
+         giveSEStrike(SEStrike, bigWep, %player, 1);
       }
       if(%strike){
          %minLeft = (60000 * $dragon::dwUnlockTime) - (getSimTime() - game.firstTrig);
@@ -1127,6 +1127,10 @@ datablock ItemData(SEStrike){
 };
 
 function SEStrike::onCollision(%data,%obj,%col,%enable){
+   return 0;// do nothing
+}
+
+function giveSEStrike(%data,%obj,%col,%enable){
    if (%col.getDataBlock().className $= Armor && %col.getState() !$= "Dead" && !%col.isMounted() && !%col.hasStrike && %enable){
       if (%col.client){
          messageClient(%col.client, 'MsgItemPickup', '\c0You picked up %1.', %data.pickUpName);

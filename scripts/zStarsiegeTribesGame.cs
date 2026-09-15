@@ -1,5 +1,12 @@
 autoExec("scripts/StarsiegeTribes.cs",0,0);
 $T1ScriptExec = 1;
+
+$T1OnlyWeapons = 0;
+$T1RetroArmor = 0;
+$T1RetroSkin = 0;
+$T1RetroFlag = 0;
+
+
 datablock StaticShapeData(T1StartObj)
 {
    catagory             = "misc";
@@ -10,19 +17,82 @@ function T1StartObj::onAdd(%this, %obj){
    if(!isObject(StarsiegeTribesMap)){
       %obj.setName("StarsiegeTribesMap");
       StarsiegeTribesMap.teamOnly = 0;
-      for(%i = 0; %i <= 4; %i++){
-         $TeamDeployedCount[%i, T1RemoteTurret] = 0;
-         $TeamDeployedCount[%i, T1InvyDeployable] = 0;
-         $TeamDeployedCount[%i, T1AmmoDeployable] = 0; 
-         $TeamDeployedCount[%i, T1MineDeployed] = 0;
-         $TeamDeployedCount[%i, T1PulseSensorDeployable] = 0;
-         $TeamDeployedCount[%i, T1MotionSensorDeployable] = 0;
-         $TeamDeployedCount[%i, TargetBeacon] = 0;
-         $TeamDeployedCount[%i, MarkerBeacon] = 0;    
+      StarsiegeTribesMap.pureT1 = 0;
+   }
+
+   $T1OnlyWeapons = StarsiegeTribesMap.pureT1 == 1;
+   $T1RetroArmor = StarsiegeTribesMap.pureT1 == 1;
+   $T1RetroSkin = StarsiegeTribesMap.pureT1 == 1;
+   $T1RetroFlag = StarsiegeTribesMap.pureT1 == 1;
+
+   for(%i = 0; %i <= 4; %i++){
+      $TeamDeployedCount[%i, T1RemoteTurret] = 0;
+      $TeamDeployedCount[%i, T1InvyDeployable] = 0;
+      $TeamDeployedCount[%i, T1AmmoDeployable] = 0; 
+      $TeamDeployedCount[%i, T1MineDeployed] = 0;
+      $TeamDeployedCount[%i, T1PulseSensorDeployable] = 0;
+      $TeamDeployedCount[%i, T1MotionSensorDeployable] = 0;
+      $TeamDeployedCount[%i, TargetBeacon] = 0;
+      $TeamDeployedCount[%i, MarkerBeacon] = 0; 
+      $TeamDeployedCount[%i, T1DeployedCamera] = 0;
+   }
+   if(!lightMaleHumanArmor.starsiegeData){
+      loadRetInfo(1);// load ret and weapon info fail safe for single player
+   }
+   if($T1OnlyWeapons){
+      if(!$InvyBanDef){
+         $InvBanDef["CTF", "ShockLance"] =  $InvBanList["CTF", "ShockLance"];
+         $InvBanDef["CTF", "MissileLauncher"] =  $InvBanList["CTF", "MissileLauncher"];
+
+         $InvBanDef["CTF", "CloakingPack"] =  $InvBanList["CTF", "CloakingPack"];
+         $InvBanDef["CTF", "SatchelCharge"] =  $InvBanList["CTF", "SatchelCharge"];
+         $InvBanDef["CTF", "ELFBarrelPack"] =  $InvBanList["CTF", "ELFBarrelPack"];
+         $InvBanDef["CTF", "MortarBarrelPack"] =  $InvBanList["CTF", "MortarBarrelPack"];
+         $InvBanDef["CTF", "PlasmaBarrelPack"] =  $InvBanList["CTF", "PlasmaBarrelPack"];
+         $InvBanDef["CTF", "AABarrelPack"] =  $InvBanList["CTF", "AABarrelPack"];
+         $InvBanDef["CTF", "MissileBarrelPack"] =  $InvBanList["CTF", "MissileBarrelPack"];
+
+         $InvBanDef["CTF", "FlashGrenade"] =  $InvBanList["CTF", "FlashGrenade"];
+         $InvBanDef["CTF", "ConcussionGrenade"] =  $InvBanList["CTF", "ConcussionGrenade"];
+         $InvBanDef["CTF", "FlareGrenade"] =  $InvBanList["CTF", "FlareGrenade"];
+         $InvyBanDef = 1;
       }
+
+      $InvBanList["CTF", "ShockLance"] = 1;
+      $InvBanList["CTF", "MissileLauncher"] = 1;
+
+      $InvBanList["CTF", "CloakingPack"] = 1;
+      $InvBanList["CTF", "SatchelCharge"] = 1;
+      $InvBanList["CTF", "ELFBarrelPack"] = 1;
+      $InvBanList["CTF", "MortarBarrelPack"] = 1;
+      $InvBanList["CTF", "PlasmaBarrelPack"] = 1;
+      $InvBanList["CTF", "AABarrelPack"] = 1;
+      $InvBanList["CTF", "MissileBarrelPack"] = 1;
+
+      $InvBanList["CTF", "FlashGrenade"] = 1;
+      $InvBanList["CTF", "ConcussionGrenade"] = 1;
+      $InvBanList["CTF", "FlareGrenade"] = 1;
    }
 }
+function T1StartObj::onRemove(%this, %obj){  
+   Parent::onRemove(%this, %obj);
+   if($T1OnlyWeapons){
+      $InvBanList["CTF", "ShockLance"] =  $InvBanDef["CTF", "ShockLance"];
+      $InvBanList["CTF", "MissileLauncher"] =  $InvBanDef["CTF", "MissileLauncher"];
 
+      $InvBanList["CTF", "CloakingPack"] =  $InvBanDef["CTF", "CloakingPack"];
+      $InvBanList["CTF", "SatchelCharge"] =  $InvBanDef["CTF", "SatchelCharge"];
+      $InvBanList["CTF", "ELFBarrelPack"] =  $InvBanDef["CTF", "ELFBarrelPack"];
+      $InvBanList["CTF", "MortarBarrelPack"] =  $InvBanDef["CTF", "MortarBarrelPack"];
+      $InvBanList["CTF", "PlasmaBarrelPack"] =  $InvBanDef["CTF", "PlasmaBarrelPack"];
+      $InvBanList["CTF", "AABarrelPack"] =  $InvBanDef["CTF", "AABarrelPack"];
+      $InvBanList["CTF", "MissileBarrelPack"] =  $InvBanDef["CTF", "MissileBarrelPack"];
+
+      $InvBanList["CTF", "FlashGrenade"] =  $InvBanDef["CTF", "FlashGrenade"];
+      $InvBanList["CTF", "ConcussionGrenade"] =  $InvBanDef["CTF", "ConcussionGrenade"];
+      $InvBanList["CTF", "FlareGrenade"] =  $InvBanDef["CTF", "FlareGrenade"];   
+   }
+}
 
 function T1WeaponImage::onMount(%this,%obj,%slot)
 {
@@ -5537,12 +5607,10 @@ function vpadLockOut(%obj){
 }
 
 function CTFGame::equip(%game, %player){
-
    if(isObject(StarsiegeTribesMap) && (StarsiegeTribesMap.teamOnly == %player.team || StarsiegeTribesMap.teamOnly == 0)){
       for(%i =0; %i<$InventoryHudCount; %i++)
          %player.client.setInventoryHudItem($InventoryHudData[%i, itemDataName], 0, 1);
-      %player.client.clearBackpackIcon();
-
+      %player.client.clearBackpackIcon(); 
       //%player.setArmor("Light");
       %player.setInventory(RepairKit,1);
       %player.setInventory(T1Grenade,6);
@@ -5606,6 +5674,17 @@ $armorArray[5] = HeavyFemaleHumanArmor;
 $armorArray[6] = LightMaleBiodermArmor;
 $armorArray[7] = MediumMaleBiodermArmor;
 $armorArray[8] = HeavyMaleBiodermArmor;
+// The retro armors need the same T1 max[] limits as everything else, or a retro
+// player cannot carry a single T1 weapon.  They inherit from the stock armors, but
+// inheritance copies at DEFINITION time and loadRetInfo(1) does not run until
+// T1StartObj::onAdd -- long after -- so the copy would always be of the unpatched
+// values.  Patch them directly instead.  (See the armor block at the end of this file.)
+$armorArray[9]  = LightMaleTR1Armor;
+$armorArray[10] = MediumMaleTR1Armor;
+$armorArray[11] = HeavyMaleTR1Armor;
+$armorArray[12] = LightFemaleTR1Armor;
+$armorArray[13] = MediumFemaleTR1Armor;
+$armorArray[14] = HeavyFemaleTR1Armor;
 
 
 
@@ -5631,8 +5710,9 @@ function t1ammoarray(){
    }
 }t1ammoarray();
 
-function loadRetInfo(){
-   if(!$t1loadRet){ 
+function loadRetInfo(%bypass){
+   error("loadRetInfo bypass: " @ %bypass);
+   if(!$t1loadRet || %bypass){ 
       $t1loadRet = 1;
 
       $WeaponsHudData[$WeaponsHudCount, bitmapName] = "gui/hud_disc";
@@ -5749,9 +5829,19 @@ function loadRetInfo(){
       $InventoryHudData[$InventoryHudCount, slot]         = 2;
       $InventoryHudCount++;
 
+      // Slot 0 and the hand-grenade bitmap, matching retail's own camera grenade
+      // (hud.cs:488-491) -- it is a grenade as far as the HUD is concerned.
+      $InventoryHudData[$InventoryHudCount, bitmapName]   = "gui/hud_handgren";
+      $InventoryHudData[$InventoryHudCount, itemDataName] = T1CameraGrenade;
+      $InventoryHudData[$InventoryHudCount, ammoDataName] = T1CameraGrenade;
+      $InventoryHudData[$InventoryHudCount, slot]         = 0;
+      $InventoryHudCount++;
 
-      for(%a = 0; %a < 9; %a++){
+
+      for(%a = 0; $armorArray[%a] !$= ""; %a++){
          %armor = $armorArray[%a];
+         if(!isObject(%armor))// retro armors are absent until the block at the end of
+            continue;         // this file has run, and on a non-retro build never exist
          for(%i = 0; %i < 5; %i++){
             %armor.max[$t1AmmoWep[%i]] = %armor.max[$t1AmmoWepEQ[%i]];
             %armor.max[$t1AmmoWep[%i].image.ammo] = %armor.max[$t1AmmoWepEQ[%i].image.ammo];
@@ -5768,7 +5858,9 @@ function loadRetInfo(){
          %armor.max[T1PulseSensorDeployable]  = %armor.max[PulseSensorDeployable];
          %armor.max[T1MotionSensorDeployable]  = %armor.max[MotionSensorDeployable];
          %armor.max[T1Beacon]  = %armor.max[Beacon];
+         %armor.max[T1CameraGrenade]  = %armor.max[CameraGrenade];
       }
+      lightMaleHumanArmor.starsiegeData = true;
    }
 }loadRetInfo();
 
@@ -5897,6 +5989,9 @@ function t1buyFavorites(%client)
       %data = $NameToInv[%client.favorites[getField( %client.grenadeIndex, %i )]];
       if ( !($InvBanList[%cmt, %data]) ){
          %data = (%data $= "Grenade") ? "T1Grenade" : %data;
+         // "Deployable Camera" is $InvGrenade[4], so it arrives through this same loop
+         %data = (%data $= "CameraGrenade") ? "T1CameraGrenade" : %data;
+                error("t1buyFavorites: grenadeIndex[" @ %i @ "] = " @ %data);
         %client.player.setInventory(%data, 30 );
       }
    }
@@ -5976,6 +6071,7 @@ function t1buyDeployableFavorites(%client)
       if ( !($InvBanList[DeployInv, %GInv])  &&  !$InvBanList[%cmt, %GInv]){
          %GInv = (%GInv $= "Grenade") ? "T1Grenade" : %GInv;
          %GInv = (%GInv $= "Mine") ? "T1Mine" : %GInv;
+         %GInv = (%GInv $= "CameraGrenade") ? "T1CameraGrenade" : %GInv;
          %player.setInventory( %GInv, 30 );
       }
    }
@@ -6081,6 +6177,7 @@ function T1getAmmoStationLovin(%client)
    if ( !($InvBanList[%cmt, %grenType]) ){
       %grenType = (%grenType $= "Grenade") ? "T1Grenade" : %grenType;
       %grenType = (%grenType $= "Mine") ? "T1Mine" : %grenType;
+      %grenType = (%grenType $= "CameraGrenade") ? "T1CameraGrenade" : %grenType;
       %client.player.setInventory( %grenType, 30 );
    }
 
@@ -6154,14 +6251,21 @@ function ShapeBase::t1clearInventory(%this)
       if($WeaponsHudData[%i, ammoDataName] !$= "")
          %this.setInventory($WeaponsHudData[%i, ammoDataName], 0);
    }
-   for(%i = 0; $InvGrenade[%i] !$= ""; %i++)
-      %this.setInventory($NameToInv[$InvGrenade[%i]], 0);
-
-   for(%i = 0; $InvMine[%i] !$= ""; %i++)
-      %this.setInventory($NameToInv[$InvMine[%i]], 0);
-
-   %this.setInventory(RepairKit, 0);
-   %this.setInventory(Beacon, 0);
+   // Handhelds, cleared through $InventoryHudData for the same reason the weapons loop
+   // above uses $WeaponsHudData: loadRetInfo EXTENDS both lists with the T1 items, so
+   // iterating them picks the T1 copies up automatically.
+   //
+   // The old code walked $InvGrenade and $InvMine instead, mapping through $NameToInv --
+   // which only ever yields RETAIL names (Grenade, CameraGrenade, Mine, ...). Nothing
+   // extends those lists, so T1Grenade, T1Mine, T1Beacon and T1CameraGrenade survived
+   // every clear. A player kept the spawn kit's T1Grenade through every station buy, and
+   // since Grenade is $InvGrenade[0] it won the first-match in ShapeBase::use, so the
+   // grenade key threw a grenade no matter which handheld was actually selected.
+   //
+   // This also covers RepairKit ($InventoryHudData[2]) and Beacon ([7]), which the two
+   // literal setInventory calls used to handle on their own.
+   for(%i = 0; %i < $InventoryHudCount; %i++)
+      %this.setInventory($InventoryHudData[%i, itemDataName], 0);
 
    // take away any pack the player has
    %curPack = %this.getMountedImage($BackpackSlot);
@@ -6487,16 +6591,20 @@ function T1GrenadeThrown::onCollision(%data, %obj, %col){
 package StarsiegeTribes{// annoyingly had to use package do to fixed use of names
    function ShapeBase::use(%this, %data){
      %val = parent::use(%this, %data);
-      if(!%val && isObject(%this) && %data !$= "") {
+      if(!%val && isObject(%this) && isObject(%data)) {
          if(%data $= Grenade && %this.inv[T1Grenade] > 0){
-            %data = T1Grenade;   
+            %data = T1Grenade;
          }
          else if(%data $= Mine && %this.inv[T1Mine] > 0) {
-            %data = T1Mine;   
+            %data = T1Mine;
          }
          else if(%data $= Beacon && %this.inv[T1Beacon] > 0) {
-            %data = T1Beacon;   
+            %data = T1Beacon;
          }
+         else if(%data $= Grenade && %this.inv[T1CameraGrenade] > 0) {
+            %data = T1CameraGrenade;
+         }
+         error("ShapeBase::use: data = "@%data@" inv = "@%this.inv[%data.getName()]);
          // default case
          if (%this.inv[%data.getName()] > 0) {
             %data.onUse(%this);
@@ -6851,6 +6959,7 @@ datablock ShapeBaseImageData(T1EnergyPackImage)
    item = T1EnergyPack;
    mountPoint = 1;
    offset = "0 0 0";
+   rotation = "0 0 0 0";
    rechargeRateBoost = 0.15;
 
 	stateName[0] = "default";
@@ -7510,7 +7619,403 @@ function T1PulseSensorDeployable::onInventory(%this,%player,%value)
    }
    Pack::onInventory(%this,%player,%value);
 }
-//client raycast fix not needed tho, only here for archrival 
+
+// TSShapeConstructors.  These are what graft the 226 .dsq clips onto the five
+// mesh-only .dts, and they are SimDataBlocks -- IMPLEMENT_CO_DATABLOCK_V1 in
+// tsShapeConstruct.cc -- so creating them here on the server ghosts them to every
+// client, which is how the clips reach a remote player.  Stock does the identical
+// thing for light_male via scripts/player.cs.
+//
+// They must come BEFORE the PlayerData below: TSShapeConstructor::onAdd is a no-op
+// once the shape resource reports getSequencesConstructed(), so if a PlayerData
+// preloads the .dts first the clips are never imported -- and the armor then renders
+// perfectly while refusing to animate, which looks nothing like a load-order bug.
+//
+// Inlined verbatim from what used to be shapes/<armor>.cs.  Those files are gone;
+// if you regenerate the armors, the generator's output goes HERE.  Sequence numbering
+// only has to be unique and gapless within each block -- it is not an engine slot.
+datablock TSShapeConstructor(larmorDts)
+{
+   baseShape = "larmor.dts";
+   sequence0 = "larmor_root.dsq root";
+   sequence1 = "larmor_run.dsq run";
+   sequence2 = "larmor_runback.dsq back";
+   sequence3 = "larmor_side_left.dsq side";
+   sequence4 = "larmor_looks.dsq looks";
+   sequence5 = "larmor_apc_root.dsq apc_root";
+   sequence6 = "larmor_apc_pilot.dsq apc_pilot";
+   sequence7 = "larmor_crouch_root.dsq crouch_root";
+   sequence8 = "larmor_crouch_looks.dsq crouch_looks";
+   sequence9 = "larmor_crouch_forward.dsq crouch_forward";
+   sequence10 = "larmor_crouch_side_left.dsq crouch_side_left";
+   sequence11 = "larmor_crouch_die.dsq crouch_die";
+   sequence12 = "larmor_jump_run.dsq jump";
+   sequence13 = "larmor_fall.dsq fall";
+   sequence14 = "larmor_landing.dsq land";
+   sequence15 = "larmor_jet.dsq jet";
+   sequence16 = "larmor_die_back.dsq death3";
+   sequence17 = "larmor_die_blown_back.dsq death8";
+   sequence18 = "larmor_die_chest.dsq death2";
+   sequence19 = "larmor_die_head.dsq death1";
+   sequence20 = "larmor_die_leg_right.dsq death7";
+   sequence21 = "larmor_die_leg_left.dsq death6";
+   sequence22 = "larmor_die_left_side.dsq death4";
+   sequence23 = "larmor_die_grab_back.dsq die_grab_back";
+   sequence24 = "larmor_die_right_side.dsq death5";
+   sequence25 = "larmor_die_spin.dsq death11";
+   sequence26 = "larmor_die_forward_kneel.dsq death9";
+   sequence27 = "larmor_die_forward.dsq death10";
+   sequence28 = "larmor_sign_over_here.dsq sign_over_here";
+   sequence29 = "larmor_sign_stop.dsq sign_stop";
+   sequence30 = "larmor_sign_point.dsq sign_point";
+   sequence31 = "larmor_sign_salut.dsq sign_salut";
+   sequence32 = "larmor_sign_retreat.dsq sign_retreat";
+   sequence33 = "larmor_pda_access.dsq pda";
+   sequence34 = "larmor_celebration_1.dsq cel1";
+   sequence35 = "larmor_celebration_3.dsq cel3";
+   sequence36 = "larmor_celebration_2.dsq cel2";
+   sequence37 = "larmor_taunt_2.dsq cel7";
+   sequence38 = "larmor_taunt_1.dsq cel4";
+   sequence39 = "larmor_wave.dsq wave";
+   sequence40 = "larmor_throw.dsq throw";
+   sequence41 = "larmor_flyer_root.dsq flyer_root";
+   sequence42 = "larmor_pose_kneel.dsq pose_kneel";
+   sequence43 = "larmor_pose_stand.dsq pose_stand";
+   sequence44 = "larmor_look.dsq look";
+   sequence45 = "larmor_head.dsq head";
+   sequence46 = "larmor_headside.dsq headside";
+   sequence47 = "larmor_standjump.dsq standjump";
+   sequence48 = "larmor_ski.dsq ski";
+};
+
+datablock TSShapeConstructor(marmorDts)
+{
+   baseShape = "marmor.dts";
+   sequence0 = "marmor_root.dsq root";
+   sequence1 = "marmor_run.dsq run";
+   sequence2 = "marmor_runback.dsq back";
+   sequence3 = "marmor_side_left.dsq side";
+   sequence4 = "marmor_apc_root.dsq apc_root";
+   sequence5 = "marmor_apc_pilot.dsq apc_pilot";
+   sequence6 = "marmor_pda_access.dsq pda";
+   sequence7 = "marmor_sign_retreat.dsq sign_retreat";
+   sequence8 = "marmor_sign_over_here.dsq sign_over_here";
+   sequence9 = "marmor_sign_point.dsq sign_point";
+   sequence10 = "marmor_sign_stop.dsq sign_stop";
+   sequence11 = "marmor_sign_salut.dsq sign_salut";
+   sequence12 = "marmor_taunt_1.dsq cel4";
+   sequence13 = "marmor_taunt_2.dsq cel7";
+   sequence14 = "marmor_pose_kneel.dsq pose_kneel";
+   sequence15 = "marmor_pose_stand.dsq pose_stand";
+   sequence16 = "marmor_celebration_1.dsq cel1";
+   sequence17 = "marmor_celebration_2.dsq cel2";
+   sequence18 = "marmor_celebration_3.dsq cel3";
+   sequence19 = "marmor_wave.dsq wave";
+   sequence20 = "marmor_die_head.dsq death1";
+   sequence21 = "marmor_die_chest.dsq death2";
+   sequence22 = "marmor_die_left_side.dsq death4";
+   sequence23 = "marmor_die_right_side.dsq death5";
+   sequence24 = "marmor_die_blown_back.dsq death8";
+   sequence25 = "marmor_die_back.dsq death3";
+   sequence26 = "marmor_die_leg_right.dsq death7";
+   sequence27 = "marmor_die_leg_left.dsq death6";
+   sequence28 = "marmor_die_spin.dsq death11";
+   sequence29 = "marmor_die_grab_back.dsq die_grab_back";
+   sequence30 = "marmor_die_forward_kneel.dsq death9";
+   sequence31 = "marmor_die_forward.dsq death10";
+   sequence32 = "marmor_jet.dsq jet";
+   sequence33 = "marmor_landing.dsq land";
+   sequence34 = "marmor_jump_run.dsq jump";
+   sequence35 = "marmor_fall_controlled.dsq fall";
+   sequence36 = "marmor_looks.dsq looks";
+   sequence37 = "marmor_throw.dsq throw";
+   sequence38 = "marmor_look.dsq look";
+   sequence39 = "marmor_head.dsq head";
+   sequence40 = "marmor_headside.dsq headside";
+   sequence41 = "marmor_standjump.dsq standjump";
+   sequence42 = "marmor_ski.dsq ski";
+};
+
+datablock TSShapeConstructor(harmorDts)
+{
+   baseShape = "harmor.dts";
+   sequence0 = "harmor_root.dsq root";
+   sequence1 = "harmor_looks.dsq looks";
+   sequence2 = "harmor_apc_root.dsq apc_root";
+   sequence3 = "harmor_apc_pilot.dsq apc_pilot";
+   sequence4 = "harmor_run.dsq run";
+   sequence5 = "harmor_runback.dsq back";
+   sequence6 = "harmor_side_left.dsq side";
+   sequence7 = "harmor_jump_run.dsq jump";
+   sequence8 = "harmor_throw.dsq throw";
+   sequence9 = "harmor_pda_access.dsq pda";
+   sequence10 = "harmor_jet.dsq jet";
+   sequence11 = "harmor_fall.dsq fall";
+   sequence12 = "harmor_landing.dsq land";
+   sequence13 = "harmor_sign_over_here.dsq sign_over_here";
+   sequence14 = "harmor_sign_point.dsq sign_point";
+   sequence15 = "harmor_sign_retreat.dsq sign_retreat";
+   sequence16 = "harmor_sign_stop.dsq sign_stop";
+   sequence17 = "harmor_sign_salut.dsq sign_salut";
+   sequence18 = "harmor_wave.dsq wave";
+   sequence19 = "harmor_die_forward_kneel.dsq death9";
+   sequence20 = "harmor_die_back.dsq death3";
+   sequence21 = "harmor_die_blown_back.dsq death8";
+   sequence22 = "harmor_die_chest.dsq death2";
+   sequence23 = "harmor_die_forward.dsq death10";
+   sequence24 = "harmor_die_grab_back.dsq die_grab_back";
+   sequence25 = "harmor_die_head.dsq death1";
+   sequence26 = "harmor_die_leg_left.dsq death6";
+   sequence27 = "harmor_die_leg_right.dsq death7";
+   sequence28 = "harmor_die_right_side.dsq death5";
+   sequence29 = "harmor_die_left_side.dsq death4";
+   sequence30 = "harmor_die_spin.dsq death11";
+   sequence31 = "harmor_celebration_1.dsq cel1";
+   sequence32 = "harmor_celebration_2.dsq cel2";
+   sequence33 = "harmor_celebration_3.dsq cel3";
+   sequence34 = "harmor_taunt_1.dsq cel4";
+   sequence35 = "harmor_taunt_2.dsq cel7";
+   sequence36 = "harmor_pose_kneel.dsq pose_kneel";
+   sequence37 = "harmor_pose_stand.dsq pose_stand";
+   sequence38 = "harmor_look.dsq look";
+   sequence39 = "harmor_head.dsq head";
+   sequence40 = "harmor_headside.dsq headside";
+   sequence41 = "harmor_standjump.dsq standjump";
+   sequence42 = "harmor_ski.dsq ski";
+};
+
+datablock TSShapeConstructor(lfemaleDts)
+{
+   baseShape = "lfemale.dts";
+   sequence0 = "lfemale_root.dsq root";
+   sequence1 = "lfemale_run.dsq run";
+   sequence2 = "lfemale_runback.dsq back";
+   sequence3 = "lfemale_side_left.dsq side";
+   sequence4 = "lfemale_jet.dsq jet";
+   sequence5 = "lfemale_fall.dsq fall";
+   sequence6 = "lfemale_landing.dsq land";
+   sequence7 = "lfemale_jump_run.dsq jump";
+   sequence8 = "lfemale_looks.dsq looks";
+   sequence9 = "lfemale_pda_access.dsq pda";
+   sequence10 = "lfemale_throw.dsq throw";
+   sequence11 = "lfemale_flyer_root.dsq flyer_root";
+   sequence12 = "lfemale_apc_root.dsq apc_root";
+   sequence13 = "lfemale_celebration_1.dsq cel1";
+   sequence14 = "lfemale_celebration_2.dsq cel2";
+   sequence15 = "lfemale_celebration_3.dsq cel3";
+   sequence16 = "lfemale_taunt_1.dsq cel4";
+   sequence17 = "lfemale_taunt_2.dsq cel7";
+   sequence18 = "lfemale_wave.dsq wave";
+   sequence19 = "lfemale_pose_kneel.dsq pose_kneel";
+   sequence20 = "lfemale_pose_stand.dsq pose_stand";
+   sequence21 = "lfemale_crouch_root.dsq crouch_root";
+   sequence22 = "lfemale_crouch_looks.dsq crouch_looks";
+   sequence23 = "lfemale_crouch_forward.dsq crouch_forward";
+   sequence24 = "lfemale_crouch_side_left.dsq crouch_side_left";
+   sequence25 = "lfemale_crouch_die.dsq crouch_die";
+   sequence26 = "lfemale_die_forward.dsq death10";
+   sequence27 = "lfemale_die_chest.dsq death2";
+   sequence28 = "lfemale_die_back.dsq death3";
+   sequence29 = "lfemale_die_blown_back.dsq death8";
+   sequence30 = "lfemale_die_spin.dsq death11";
+   sequence31 = "lfemale_die_head.dsq death1";
+   sequence32 = "lfemale_die_left_side.dsq death4";
+   sequence33 = "lfemale_die_right_side.dsq death5";
+   sequence34 = "lfemale_die_leg_right.dsq death7";
+   sequence35 = "lfemale_die_forward_kneel.dsq death9";
+   sequence36 = "lfemale_die_leg_left.dsq death6";
+   sequence37 = "lfemale_die_grab_back.dsq die_grab_back";
+   sequence38 = "lfemale_sign_over_here.dsq sign_over_here";
+   sequence39 = "lfemale_sign_point.dsq sign_point";
+   sequence40 = "lfemale_sign_retreat.dsq sign_retreat";
+   sequence41 = "lfemale_sign_salut.dsq sign_salut";
+   sequence42 = "lfemale_sign_stop.dsq sign_stop";
+   sequence43 = "lfemale_look.dsq look";
+   sequence44 = "lfemale_head.dsq head";
+   sequence45 = "lfemale_headside.dsq headside";
+   sequence46 = "lfemale_standjump.dsq standjump";
+   sequence47 = "lfemale_ski.dsq ski";
+};
+
+datablock TSShapeConstructor(mfemaleDts)
+{
+   baseShape = "mfemale.dts";
+   sequence0 = "mfemale_root.dsq root";
+   sequence1 = "mfemale_looks.dsq looks";
+   sequence2 = "mfemale_apc_root.dsq apc_root";
+   sequence3 = "mfemale_apc_pilot.dsq apc_pilot";
+   sequence4 = "mfemale_pose_stand.dsq pose_stand";
+   sequence5 = "mfemale_pose_kneel.dsq pose_kneel";
+   sequence6 = "mfemale_pda_access.dsq pda";
+   sequence7 = "mfemale_throw.dsq throw";
+   sequence8 = "mfemale_taunt_1.dsq cel4";
+   sequence9 = "mfemale_taunt_2.dsq cel7";
+   sequence10 = "mfemale_celebration_1.dsq cel1";
+   sequence11 = "mfemale_celebration_2.dsq cel2";
+   sequence12 = "mfemale_celebration_3.dsq cel3";
+   sequence13 = "mfemale_sign_point.dsq sign_point";
+   sequence14 = "mfemale_sign_over_here.dsq sign_over_here";
+   sequence15 = "mfemale_sign_retreat.dsq sign_retreat";
+   sequence16 = "mfemale_sign_salut.dsq sign_salut";
+   sequence17 = "mfemale_sign_stop.dsq sign_stop";
+   sequence18 = "mfemale_wave.dsq wave";
+   sequence19 = "mfemale_run.dsq run";
+   sequence20 = "mfemale_runback.dsq back";
+   sequence21 = "mfemale_side_left.dsq side";
+   sequence22 = "mfemale_jump_run.dsq jump";
+   sequence23 = "mfemale_fall.dsq fall";
+   sequence24 = "mfemale_landing.dsq land";
+   sequence25 = "mfemale_jet.dsq jet";
+   sequence26 = "mfemale_die_back.dsq death3";
+   sequence27 = "mfemale_die_blown_back.dsq death8";
+   sequence28 = "mfemale_die_chest.dsq death2";
+   sequence29 = "mfemale_die_spin.dsq death11";
+   sequence30 = "mfemale_die_leg_right.dsq death7";
+   sequence31 = "mfemale_die_leg_left.dsq death6";
+   sequence32 = "mfemale_die_head.dsq death1";
+   sequence33 = "mfemale_die_right_side.dsq death5";
+   sequence34 = "mfemale_die_left_side.dsq death4";
+   sequence35 = "mfemale_die_grab_back.dsq die_grab_back";
+   sequence36 = "mfemale_die_forward_kneel.dsq death9";
+   sequence37 = "mfemale_die_forward.dsq death10";
+   sequence38 = "mfemale_look.dsq look";
+   sequence39 = "mfemale_head.dsq head";
+   sequence40 = "mfemale_headside.dsq headside";
+   sequence41 = "mfemale_standjump.dsq standjump";
+   sequence42 = "mfemale_ski.dsq ski";
+};
+
+// onAdd() returns false SILENTLY when baseShape does not resolve, so say it out loud.
+function t1CheckShapes(){
+   %bad = "";
+   if(!isObject(larmorDts))  %bad = %bad @ " larmorDts";
+   if(!isObject(marmorDts))  %bad = %bad @ " marmorDts";
+   if(!isObject(harmorDts))  %bad = %bad @ " harmorDts";
+   if(!isObject(lfemaleDts)) %bad = %bad @ " lfemaleDts";
+   if(!isObject(mfemaleDts)) %bad = %bad @ " mfemaleDts";
+   if(%bad !$= "")
+      error("retro armor: TSShapeConstructor(s) FAILED to register:" @ %bad @
+            " -- baseShape did not resolve under shapes/, so those armors have ZERO" SPC
+            "animation clips. Check the .dts/.dsq are loose in base/shapes/ and that no" SPC
+            "stale shapes/*.cs.dso from the old t1armor.vl2 is shadowing them.");
+}
+t1CheckShapes();
+
+// Race "TR1", so the stock name-building sites resolve to these.  Each one inherits
+// its stock counterpart, so mass/damage/energy/loadout rules are untouched -- only
+// the mesh changes.  There is no T1 heavy female mesh; stock has the datablock, so
+// it maps to the male heavy the way the old mod did.
+datablock PlayerData(LightMaleTR1Armor) : LightMaleHumanArmor {
+   shapeFile = "larmor.dts";
+   computeCRC = false;
+};
+datablock PlayerData(MediumMaleTR1Armor) : MediumMaleHumanArmor {
+   shapeFile = "marmor.dts";
+   computeCRC = false;
+};
+datablock PlayerData(HeavyMaleTR1Armor) : HeavyMaleHumanArmor {
+   shapeFile = "harmor.dts";
+   computeCRC = false;
+};
+datablock PlayerData(LightFemaleTR1Armor) : LightFemaleHumanArmor {
+   shapeFile = "lfemale.dts";
+   computeCRC = false;
+};
+datablock PlayerData(MediumFemaleTR1Armor) : MediumFemaleHumanArmor {
+   shapeFile = "mfemale.dts";
+   computeCRC = false;
+};
+datablock PlayerData(HeavyFemaleTR1Armor) : HeavyFemaleHumanArmor {
+   shapeFile = "harmor.dts";
+   computeCRC = false;
+};
+
+// Same test CTFGame::equip uses, against %client.team -- at createPlayer time the
+// player object has no team yet, and %player.team is assigned from %client.team a
+// few lines later anyway, so the two agree.
+// Is this TEAM retro on this map? Split out of t1UseRetroArmor because the team skins
+// below key off a bare team number: getTeamSkin is called for flags, holo projectors and
+// score icons as well as for players, and none of those carry a client.
+function t1RetroTeam(%team){
+   if(!isObject(StarsiegeTribesMap))
+      return false;
+   // teamOnly 0 = the whole map is retro; otherwise only that one team is (the T1-vs-T2
+   // map), and the other side must keep its stock armors and stock skins.
+   if(StarsiegeTribesMap.teamOnly != 0 && StarsiegeTribesMap.teamOnly != %team)
+      return false;
+   return true;
+}
+
+function t1UseRetroArmor(%client){
+   if(!$T1RetroArmor)
+      return false;
+   if(!t1RetroTeam(%client.team))
+      return false;
+   // Never hand out a datablock that is not there: `new Player(){dataBlock = ""}`
+   // fails and the client spawns as nothing at all.
+   return isObject(LightMaleTR1Armor);
+}
+
+// THE WHOLE SWAP IS ONE FIELD.  All three stock sites that pick an armor datablock
+// build the name the same way --
+//     %size @ %client.sex @ %client.race @ "Armor"
+// (defaultGame.cs:446 createPlayer, player.cs:2982 Player::setArmor, and
+// inventoryHud.cs:1053 getArmorDatablock) -- so setting race to "TR1" redirects
+// spawning, inventory stations, buyFavorites, t1buyFavorites and the bots in one
+// go, including any path not found while writing this.  Nothing else in the stock
+// scripts reads .race except the "Bioderm" tests, which simply stop matching.
+//
+// Deliberately NOT %player.setDataBlock() after the fact: that would fix spawning
+// only, and every station visit would put the stock armor back.
+function t1SyncArmorRace(%client){
+   if(%client.t1RealRace $= "")
+      %client.t1RealRace = %client.race;
+   if(t1UseRetroArmor(%client))
+      %client.race = "TR1";
+   else
+      %client.race = %client.t1RealRace;
+}
+
+// Re-exec'd on every CreateServer, so deactivate BEFORE the block is re-parsed:
+// redefining a function while its package is active is what stacks Parent:: chains
+// on top of each other.  Deactivate -> redefine -> activate is the safe order.
+if(isActivePackage(T1RetroArmorPkg)){
+   deactivatePackage(T1RetroArmorPkg);
+}
+package T1RetroArmorPkg{
+   // Every game type reaches this: CTF/Siege/etc. inherit it, and the types that
+   // do define their own (DMGame, HuntersGame, RabbitGame) call
+   // DefaultGame::createPlayer explicitly, which still lands on this override.
+   function DefaultGame::createPlayer(%game, %client, %spawnLoc, %respawn){
+      t1SyncArmorRace(%client);
+      Parent::createPlayer(%game, %client, %spawnLoc, %respawn);
+   }
+
+   // TEAM SKINS: Storm gets beagle, Inferno gets dsword.
+   //
+   // No new textures needed -- beagle.* and dsword.* already ship for all five T1
+   // armors (and for the stock ones), and both are first-class team skins with matching
+   // BEagleLogo / DSwordLogo StaticShapeData, so the holo projectors that build
+   // "<skin>Logo" resolve exactly the way 'base'/'baseb' do.
+   //
+   // Overriding CTFGame's and not DefaultGame's is deliberate: CTFGame::getTeamSkin
+   // (CTFGame.cs:275) does NOT chain to DefaultGame -- it picks a skin from the mission's
+   // musicTrack and returns, so an override on the parent would never run on a CTF map,
+   // which is what the retro maps are.
+   //
+   // The skin codes are inline rather than in a global because these must be TAGGED
+   // strings ('x', not "x"); to change a team's look, edit the literal here.
+   function CTFGame::getTeamSkin(%game, %team){
+      if($T1RetroSkin && t1RetroTeam(%team)){
+         if(%team == 1) return 'beagle';    // Storm
+         if(%team == 2) return 'dsword';    // Inferno
+      }
+      return Parent::getTeamSkin(%game, %team);
+   }
+};
+activatePackage(T1RetroArmorPkg);
+
+//client raycast fix not needed tho, only here for archrival
 //TSShapeInstance::castRay
 //memPatch("6bb017","eb00");
 //memPatch("6bb1e0","eb00");
@@ -7521,3 +8026,516 @@ function T1PulseSensorDeployable::onInventory(%this,%player,%value)
 //memPatch("6bad48","eb00");
 //memPatch("6bad7e","eb00");
 
+
+$T1FlagSndCount = 0;
+function t1FlagSnd(%from, %to){
+   $T1FlagSndFrom[$T1FlagSndCount] = %from;
+   $T1FlagSndTo[$T1FlagSndCount] = %to;
+   $T1FlagSndCount++;
+}
+t1FlagSnd("fx/misc/flag_snatch.wav",  "fx/misc/flagfriend.wav");   // you or an ally took theirs
+t1FlagSnd("fx/misc/flag_taken.wav",   "fx/misc/flagenemy.wav");    // yours was taken
+t1FlagSnd("fx/misc/flag_drop.wav",    "fx/misc/t1flagdrop.wav");
+t1FlagSnd("fx/misc/flag_capture.wav", "fx/misc/flagcapture.wav");
+t1FlagSnd("fx/misc/flag_return.wav",  "fx/misc/flagreturn.wav");
+t1FlagSnd("fx/misc/flag_lost.wav",    "fx/misc/flagself.wav");
+
+// The world flag, and the one mounted on the carrier.
+//
+// `: Flag` ALONE DOES NOT INHERIT THE SCRIPT CALLBACKS -- it only copies fields.
+// compiledEval.cc:547 does exactly one thing with the parent, dataBlock->assignFieldsFrom
+// (parent); there is no namespace link. Without the className below, Flag::onThrow and
+// every other Flag:: callback would simply stop being reached once an object was swapped.
+//
+// `className` is what does it. GameBaseData::onAdd (gameBase.cc:53) does
+//     Con::linkNamespaces(parent->mName, className);
+//     Con::linkNamespaces(className, name);
+// so declaring className = Flag makes T1Flag's parent namespace Flag, and T1Flag::onThrow
+// falls through. This is also why the TR1 armors work: stock armors carry
+// className = Armor, and the field copy above brings it along.
+//
+// computeCRC is off deliberately. Stock Flag has it ON, and leaving it on would require
+// every client to hold a byte-identical t1baseflag.dts or fail the check. Turn it back on
+// once the shape is settled and distributed.
+datablock ItemData(T1Flag) : Flag
+{
+   className = Flag;
+   shapeFile = "t1baseflag.dts";
+   computeCRC = false;
+};
+datablock ShapeBaseImageData(T1FlagImage) : FlagImage
+{
+   offset = "0 -0.12 0";
+   className = FlagImage;
+   shapeFile = "t1baseflag.dts";
+   computeCRC = false;
+};
+
+
+function t1IsFlag(%obj){
+   if(!isObject(%obj) || !isObject(%obj.getDataBlock()))
+      return false;
+   %n = %obj.getDataBlock().getName();
+   return (%n $= "Flag" || %n $= "T1Flag");
+}
+
+function t1RetroFlagOn(%team){
+   if(!$T1RetroFlag)
+      return false;
+   if(!isObject(T1Flag))
+      return false;
+   return t1RetroTeam(%team);
+}
+
+// This engine has no strReplace.
+function t1StrSwap(%s, %find, %rep){
+   %p = strPos(%s, %find);
+   if(%p < 0)
+      return %s;
+   return getSubStr(%s, 0, %p) @ %rep @
+          getSubStr(%s, %p + strlen(%find), strlen(%s));
+}
+
+function t1FlagSwapText(%text){
+   for(%i = 0; %i < $T1FlagSndCount; %i++)
+      %text = t1StrSwap(%text, $T1FlagSndFrom[%i], $T1FlagSndTo[%i]);
+   return %text;
+}
+
+
+function t1FlagMsg(%msg){
+   if(!$T1RetroFlag || !isObject(StarsiegeTribesMap))
+      return %msg;
+
+   %tag = getTag(%msg);
+   if(%tag $= %msg)
+      return t1FlagSwapText(%msg);      // plain text, not a tagged literal
+
+   if($T1FlagMsgDone[%tag])
+      return $T1FlagMsgMap[%tag];
+
+   %text = getTaggedString(%msg);
+   %new = t1FlagSwapText(%text);
+   $T1FlagMsgDone[%tag] = true;
+   $T1FlagMsgMap[%tag] = (%new $= %text) ? %msg : addTaggedString(%new);
+   return $T1FlagMsgMap[%tag];
+}
+
+// --- flag replacement -------------------------------------------------------
+// setDataBlock crashes on a flag Item (reported), and hooking Flag::objectiveInit did
+// not fire at all -- LCTFGame.cs carries its own Flag::objectiveInit inside a package
+// and that copy never calls Parent::, so an override there is silently bypassed. Both
+// routes are dead, so: delete the stock flag and build ours in its place.
+//
+// Driven from T1StartObj::onAdd, which is the one hook we KNOW runs on a retro map --
+// it is what names StarsiegeTribesMap, and the armor swap depends on it. It is a
+// StaticShapeData callback, so no game-type package can shadow it.
+//
+// It runs on a SCHEDULE, not inline, for two reasons: flags have no team until
+// objectiveInit (defaultGame.cs runs it after setUpTeams), and objectiveInit is reached
+// from SimGroup::objectiveInit walking the group BY INDEX -- deleting and adding during
+// that walk shifts the indices and silently skips objects.
+
+$T1FlagTodoCount = 0;
+
+function t1CollectFlags(%group){
+   for(%i = 0; %i < %group.getCount(); %i++){
+      %o = %group.getObject(%i);
+      if(%o.getClassName() $= "SimGroup"){
+         t1CollectFlags(%o);
+         continue;
+      }
+      if(!isObject(%o.getDataBlock()))
+         continue;
+      if(%o.getDataBlock().getName() $= "Flag" && t1RetroTeam(%o.team)){
+         $T1FlagTodo[$T1FlagTodoCount] = %o;
+         $T1FlagTodoCount++;
+      }
+   }
+}
+
+// Everything CTF hangs off a flag is rebuilt by running objectiveInit on the new object,
+// so the only manual work is tearing down what pointed at the old one.
+function t1ReplaceFlag(%old){
+   %team = %old.team;
+   %xf = %old.getTransform();
+   %grp = %old.getGroup();
+   %skinned = %old.isTeamSkinned;
+
+   if(isObject(%old.waypoint))
+      %old.waypoint.delete();
+   if(isObject(%old.trigger))
+      %old.trigger.delete();
+
+   %new = new Item(){
+      dataBlock = T1Flag;
+   };
+   %new.team = %team;
+   %new.isTeamSkinned = %skinned;
+   if(isObject(%grp))
+      %grp.add(%new);
+   else
+      MissionCleanup.add(%new);
+   %new.setTransform(%xf);
+
+   %old.delete();
+
+   // rebuilds waypoint, trigger, target, originalPosition, $TeamFlag and $flagPos --
+   // through whichever objectiveInit is actually active, so LCTF's copy is fine too
+   %new.objectiveInit();
+   error("T1FLAG replaced team " @ %team @ " -> " @ %new @
+         " db=" @ %new.getDataBlock().getName());
+   return %new;
+}
+
+// Retries because the delay needed depends on how long the mission takes to load; a flag
+// with no team yet means objectiveInit has not run, so there is nothing to replace.
+function t1SwapFlags(%tries){
+   if(%tries $= "")
+      %tries = 0;
+   if(!$T1RetroFlag || !isObject(T1Flag) || !isObject(StarsiegeTribesMap))
+      return;
+
+   $T1FlagTodoCount = 0;
+   if(isObject(MissionGroup))
+      t1CollectFlags(MissionGroup);
+
+   if($T1FlagTodoCount == 0){
+      if(%tries < 20)
+         schedule(500, 0, "t1SwapFlags", %tries + 1);
+      else
+         error("T1FLAG: gave up -- no stock Flag with a retro team found in MissionGroup");
+      return;
+   }
+   for(%i = 0; %i < $T1FlagTodoCount; %i++)
+      t1ReplaceFlag($T1FlagTodo[%i]);
+   $T1FlagTodoCount = 0;
+}
+
+if(isActivePackage(T1RetroFlagPkg)){
+   deactivatePackage(T1RetroFlagPkg);
+}
+package T1RetroFlagPkg{
+
+   // Runs on every retro map -- see the flag replacement above. StaticShapeData
+   // callback, so no game-type package can shadow it the way LCTFGame shadows
+   // Flag::objectiveInit.
+   function T1StartObj::onAdd(%this, %obj){
+      Parent::onAdd(%this, %obj);
+      schedule(500, 0, "t1SwapFlags");
+   }
+
+   // THROWING. ShapeBase::throwObject (inventory.cs:435) special-cases the flag THREE
+   // times by literal datablock name, and a T1Flag matches none of them:
+   //
+   //   :444  clears %obj.static, so the anti-hover hack lets the flag be thrown at all
+   //   :455  corpse throws use a random vector -- except for flags
+   //   :478  scales the impulse x75 (flags have huge mass so shots do not punt them),
+   //         AND sets flagTossWait, the 1-second grab delay
+   //
+   // Missing the last one is why the flag could not be thrown and was instantly
+   // re-collected: no impulse scale, so it barely moved, and no toss delay, so the
+   // thrower picked it straight back up.
+   //
+   // Copied from this install's inventory.cs with those three tests widened via
+   // t1IsFlag. Everything else is byte-for-byte the stock body.
+   function ShapeBase::throwObject(%this, %obj){
+      if(!$MatchStarted)
+         return;
+
+      if(t1IsFlag(%obj)){
+         %obj.static = false;
+         if(Game.Class $= CTFGame || Game.Class $= PracticeCTFGame)
+            %obj.searchSchedule = Game.schedule(10, "startFlagCollisionSearch", %obj);
+      }
+
+      %srcCorpse = (%this.getState() $= "Dead");
+      if (%srcCorpse && !t1IsFlag(%obj))
+      {
+         %vec = (-1.0 + getRandom() * 2.0) SPC (-1.0 + getRandom() * 2.0) SPC getRandom();
+         %vec = vectorScale(%vec, 10);
+      }
+      else
+      {
+         %eye = %this.getEyeVector();
+         %vec = vectorScale(%eye, 20);
+      }
+
+      %dot = vectorDot("0 0 1", %eye);
+      if (%dot < 0)
+         %dot = -%dot;
+      %vec = vectorAdd(%vec, vectorScale("0 0 12", 1 - %dot));
+
+      %vec = vectorAdd(%vec, %this.getVelocity());
+      %pos = getBoxCenter(%this.getWorldBox());
+
+      if (t1IsFlag(%obj))
+      {
+         %vec = vectorScale(%vec, (%srcCorpse ? 40 : 75));
+         %this.flagTossWait = true;
+         %this.schedule(1000, resetFlagTossWait);
+      }
+
+      %obj.setTransform(%pos);
+      %obj.applyImpulse(%pos, %vec);
+      %obj.setCollisionTimeout(%this);
+      %data = %obj.getDatablock();
+
+      %data.onThrow(%obj, %this);
+
+      AIThrowObject(%obj);
+   }
+
+   // The one thing the swap above would otherwise break: flag-defense scoring compares
+   // the datablock NAME against the literal "Flag", so a T1Flag would silently stop
+   // awarding defend points. Same logic, both names accepted.
+   function CTFGame::testFlagDefend(%game, %victimID, %killerID){
+      InitContainerRadiusSearch(%victimID.plyrPointOfDeath, %game.RADIUS_FLAG_DEFENSE,
+                                $TypeMasks::ItemObjectType);
+      %objID = containerSearchNext();
+      while(%objID != 0){
+         if(t1IsFlag(%objID) && (%objID.team == %killerID.team))
+            return true;
+         %objID = containerSearchNext();
+      }
+      return false;
+   }
+
+   // The CARRIED flag mounts as FlagImage, hardcoded in CTFGame::playerTouchEnemyFlag.
+   // Intercepting the mount rather than overriding that 40-line function keeps this
+   // working whatever else has been changed in CTFGame.cs. holdingFlag is assigned just
+   // BEFORE the mount, so the flag team -- and therefore the skin -- is known here.
+   // The name test is what stops the recursion: T1FlagImage inherits this namespace, so
+   // without it T1FlagImage::onMount would land straight back in here.
+   function FlagImage::onMount(%this, %obj, %slot){
+      if(%this.getName() $= "FlagImage" && isObject(T1FlagImage)
+         && isObject(%obj.holdingFlag) && t1RetroFlagOn(%obj.holdingFlag.team)){
+         // remount next tick -- swapping the image from inside its own mount callback
+         // re-enters the mount path while the engine is still walking it
+         %obj.schedule(0, "mountImage", T1FlagImage, %slot, true,
+                       Game.getTeamSkin(%obj.holdingFlag.team));
+         return;
+      }
+      Parent::onMount(%this, %obj, %slot);
+   }
+
+   // Sound swap. Every flag sound in the game reaches a client through one of these five,
+   // carried as "~w<path>" inside the message string.
+   function messageClient(%client, %msgType, %msgString, %a1, %a2, %a3, %a4, %a5, %a6,
+                          %a7, %a8, %a9, %a10, %a11, %a12, %a13){
+      Parent::messageClient(%client, %msgType, t1FlagMsg(%msgString), %a1, %a2, %a3, %a4,
+                            %a5, %a6, %a7, %a8, %a9, %a10, %a11, %a12, %a13);
+   }
+   function messageTeam(%team, %msgType, %msgString, %a1, %a2, %a3, %a4, %a5, %a6,
+                        %a7, %a8, %a9, %a10, %a11, %a12, %a13){
+      Parent::messageTeam(%team, %msgType, t1FlagMsg(%msgString), %a1, %a2, %a3, %a4,
+                          %a5, %a6, %a7, %a8, %a9, %a10, %a11, %a12, %a13);
+   }
+   function messageTeamExcept(%client, %msgType, %msgString, %a1, %a2, %a3, %a4, %a5, %a6,
+                              %a7, %a8, %a9, %a10, %a11, %a12, %a13){
+      Parent::messageTeamExcept(%client, %msgType, t1FlagMsg(%msgString), %a1, %a2, %a3,
+                                %a4, %a5, %a6, %a7, %a8, %a9, %a10, %a11, %a12, %a13);
+   }
+   function messageAll(%msgType, %msgString, %a1, %a2, %a3, %a4, %a5, %a6,
+                       %a7, %a8, %a9, %a10, %a11, %a12, %a13){
+      Parent::messageAll(%msgType, t1FlagMsg(%msgString), %a1, %a2, %a3, %a4, %a5, %a6,
+                         %a7, %a8, %a9, %a10, %a11, %a12, %a13);
+   }
+   function messageAllExcept(%client, %team, %msgtype, %msgString, %a1, %a2, %a3, %a4,
+                             %a5, %a6, %a7, %a8, %a9, %a10, %a11, %a12, %a13){
+      Parent::messageAllExcept(%client, %team, %msgtype, t1FlagMsg(%msgString), %a1, %a2,
+                               %a3, %a4, %a5, %a6, %a7, %a8, %a9, %a10, %a11, %a12, %a13);
+   }
+};
+activatePackage(T1RetroFlagPkg);
+
+$TeamDeployableMax[T1DeployedCamera]  = 15;
+datablock ItemData(T1CameraGrenadeThrown)
+{
+   shapeFile = "t1camera.dts";
+   mass = 0.7;
+   elasticity = 0.2;
+   friction = 1;
+   pickupRadius = 2;
+   maxDamage = 0.8;
+   sticky = true;
+   emap = true;
+   
+};
+
+datablock ItemData(T1CameraGrenade)
+{
+   className = HandInventory;
+   catagory = "Handheld";
+   shapeFile = "t1camera.dts";
+   mass = 0.7;
+   elasticity = 0.2;
+   friction = 1;
+   pickupRadius = 2;
+   thrownItem = T1CameraGrenadeThrown;
+   pickUpName = "a deployable camera";
+   isGrenade = true; // z0dd - ZOD, 5/18/03. Was missing this parameter
+   computeCRC = true;
+   emap = true;
+};
+
+datablock TurretData(T1TurretDeployedCamera) : TurretDamageProfile
+{
+   className = CameraTurret;
+   shapeFile = "t1camera.dts";
+
+   mass = 0.7;
+   maxDamage = 0.2;
+   destroyedLevel = 0.2;
+   disabledLevel = 0.2;
+   repairRate = 0;
+   explosion = CameraGrenadeExplosion;
+
+   thetaMin = 0;
+   thetaMax = 180;
+   //thetaNull = 90;
+
+	deployedObject = true;
+
+   isShielded = false;
+   energyPerDamagePoint = 40;
+   maxEnergy = 30;
+   renderWhenDestroyed = false;
+   rechargeRate = 0.05;
+
+   cameraDefaultFov = 90; // z0dd - ZOD, 4/24/02 Camera gren tweaks. was 150
+   cameraMinFov = 5; // z0dd - ZOD, 4/24/02. Camera gren tweaks. was 150
+   cameraMaxFov = 120; // z0dd - ZOD, 4/24/02. Camera gren tweaks. was 150
+   
+   neverUpdateControl = false;  // z0dd - ZOD, 4/24/02. Enable controllable camera view
+
+   canControl = true;
+   canObserve = false; // z0dd - ZOD, 4/24/02. Turned off 3rd person camera viewing.
+   observeThroughObject = true;
+   cmdCategory = "DSupport";
+   cmdIcon = CMDCameraIcon;
+   cmdMiniIconName = "commander/MiniIcons/com_camera_grey";
+   targetNameTag = 'Deployed';
+   targetTypeTag = 'Camera';
+   sensorData = CameraSensorObject;
+   sensorRadius = CameraSensorObject.detectRadius;
+
+   firstPersonOnly = true;
+   observeParameters = "0.5 4.5 4.5";
+
+   debrisShapeName = "debris_generic_small.dts";
+   debris = SmallShapeDebris;
+};
+
+function T1TurretDeployedCamera::onAdd(%this, %obj)
+{
+   Parent::onAdd(%this, %obj);   
+   %obj.mountImage(DeployableCameraBarrel, 0, true);
+	%obj.setRechargeRate(%this.rechargeRate);
+
+   %obj.setAutoFire(false); // z0dd - ZOD, 4/17/02. Server crash fix related to controlable cameras
+}
+
+function T1TurretDeployedCamera::onDestroyed(%this, %obj, %prevState)
+{
+   Parent::onDestroyed(%this, %obj, %prevState);
+   $TeamDeployedCount[%obj.team, T1DeployedCamera]--;
+   // doesn't seem to delete itself, so...
+   %obj.schedule(500, "delete");
+}
+
+
+function T1CameraGrenadeThrown::onThrow(%this, %gren)
+{
+   // schedule a check to see if the camera is at rest but not deployed
+   %gren.checkCount = 0;
+   %gren.velocCheck = %this.schedule($CameraDeployTime, "checkCameraDeploy", %gren);
+}
+
+function T1CameraGrenadeThrown::onStickyCollision(%data, %obj)
+{
+   cancel(%obj.velocCheck);
+   %pos = %obj.getLastStickyPos();
+   %norm = %obj.getLastStickyNormal();
+   
+   %intAngle = getTerrainAngle(%norm);  // staticShape.cs
+   %rotAxis = vectorNormalize(vectorCross(%norm, "0 0 1"));
+   if (getWord(%norm, 2) == 1 || getWord(%norm, 2) == -1)
+      %rotAxis = vectorNormalize(vectorCross(%norm, "0 1 0"));
+
+   %rotation = %rotAxis @ " " @ %intAngle;
+   %dcSucc = activateT1Camera(%pos, %rotation, %obj.sourceObject, %obj.sourceObject.team);
+   if(%dcSucc == 0)
+      messageClient(%obj.sourceObject.client, 'MsgDeployFailed', '\c2Your team\'s control network has reached its capacity for this item.~wfx/misc/misc.error.wav');
+   %obj.schedule(50,"delete");
+}
+
+function T1CameraGrenadeThrown::checkCameraDeploy(%this, %gren)
+{
+   %gren.checkCount++;
+   if(VectorLen(%gren.getVelocity()) < $CameraMinVelocity)
+   {
+      // camera has come to rest but not deployed -- probably on a staticshape (station, gen, etc)
+      // no resolution, so get rid of it
+      %gren.schedule(50, "delete");
+   }
+   else if(%gren.checkCount >= $CameraDeployCheckMax)
+   {
+      // camera's still moving but it's been check several times -- it was thrown from too great
+      // a height or off the edge of the world -- delete it
+      %gren.schedule(50, "delete");
+   }
+   else
+   {
+      // check back in a little while
+      %gren.velocCheck = %this.schedule($CameraDeployTime, "checkCameraDeploy", %gren);
+   }
+}
+
+function activateT1Camera(%position, %rotation, %sourceObj, %team)
+{
+   if($TeamDeployedCount[%team, T1DeployedCamera] >= $TeamDeployableMax[T1DeployedCamera])
+   {
+      // team has too many cameras deployed already, don't deploy this one
+      return 0;
+   }
+   %dCam = new Turret()
+   {
+      dataBlock = "T1TurretDeployedCamera";                            
+      team = %team;
+      needsNoPower = true;
+      owner = %sourceObj.client;
+      ownerHandle = %sourceObj.client.handle;
+      position = %position;
+      rotation = %rotation;
+   };
+   addToDeployGroup(%dCam);
+
+   if(%dCam.getTarget() != -1)
+      setTargetSensorGroup(%dCam.getTarget(), %team);
+
+   %dCam.playAudio($DeploySound, CameraGrenadeAttachSound);
+
+   // NOT %dCam.deploy(). A deployed camera gets its power from the deploy ANIMATION
+   // ending, not from the power grid:
+   //
+   //     StaticShape::deploy          -> playThread($DeployThread, "deploy")
+   //     StaticShapeData::onEndSequence -> if(%thread == $DeployThread) setSelfPowered()
+   //
+   // t1camera.dts has no sequence called "deploy" -- its one is named "activate", because
+   // TurretData::preload (turret.cc:169) requires turn/elevate/activate and REFUSES to
+   // load the datablock without all three. So deploy() would find no sequence, no thread
+   // would run, onEndSequence would never fire, setSelfPowered() would never be called,
+   // and the commander-map control check (serverCommanderMap.cs:65, %obj.isPowered())
+   // reports "object is not powered".
+   //
+   // onEndSequence keys off the thread SLOT, not the sequence name, so playing the same
+   // animation into the deploy slot restores the power grant. setSelfPowered is also
+   // called outright so power never depends on an animation completing.
+   %dCam.playThread($DeployThread, "activate");
+   %dCam.setSelfPowered();
+   %dCam.playThread($AmbientThread, "ambient");
+
+   $TeamDeployedCount[%team, T1DeployedCamera]++;
+   return 1;
+}
