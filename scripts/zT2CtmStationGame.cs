@@ -387,7 +387,7 @@ datablock AudioProfile(TAAInvyPadDeactivate)
 datablock StaticShapeData(TAAInvyPad)
 {
    catagory = "Stations";
-   shapeFile = "invyStationTAA2.dts";
+   shapeFile = "invyStationTAA.dts";
    //shapeFile = "t1ammopad.dts";
    maxDamage = 1.00;
    destroyedLevel = 1.00;
