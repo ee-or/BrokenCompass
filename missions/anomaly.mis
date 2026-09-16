@@ -785,7 +785,7 @@ new SimGroup(MissionGroup) {
 						position = "-738.188 -152.272 384.713";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -798,7 +798,7 @@ new SimGroup(MissionGroup) {
 						position = "-743.14 -152.325 382.561";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -811,7 +811,7 @@ new SimGroup(MissionGroup) {
 						position = "-750.623 -152.406 379.308";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -824,7 +824,7 @@ new SimGroup(MissionGroup) {
 						position = "-757.888 -152.304 376.151";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -837,7 +837,7 @@ new SimGroup(MissionGroup) {
 						position = "-765.28 -152.384 372.938";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -850,7 +850,7 @@ new SimGroup(MissionGroup) {
 						position = "-772.525 -152.462 369.789";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -863,7 +863,7 @@ new SimGroup(MissionGroup) {
 						position = "-809.286 -152.36 353.813";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -876,7 +876,7 @@ new SimGroup(MissionGroup) {
 						position = "-779.993 -152.243 366.544";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -889,7 +889,7 @@ new SimGroup(MissionGroup) {
 						position = "-787.366 -152.323 363.339";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -902,7 +902,7 @@ new SimGroup(MissionGroup) {
 						position = "-794.466 -152.2 360.254";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -915,7 +915,7 @@ new SimGroup(MissionGroup) {
 						position = "-802.059 -152.282 356.954";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -928,7 +928,7 @@ new SimGroup(MissionGroup) {
 						position = "-738.188 157.808 384.713";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -941,7 +941,7 @@ new SimGroup(MissionGroup) {
 						position = "-743.14 157.755 382.561";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -954,7 +954,7 @@ new SimGroup(MissionGroup) {
 						position = "-750.623 157.674 379.308";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -967,7 +967,7 @@ new SimGroup(MissionGroup) {
 						position = "-757.888 157.776 376.151";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -980,7 +980,7 @@ new SimGroup(MissionGroup) {
 						position = "-765.28 157.696 372.938";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -993,7 +993,7 @@ new SimGroup(MissionGroup) {
 						position = "-772.525 157.618 369.789";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -1006,7 +1006,7 @@ new SimGroup(MissionGroup) {
 						position = "-809.286 157.72 353.813";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -1019,7 +1019,7 @@ new SimGroup(MissionGroup) {
 						position = "-779.993 157.837 366.544";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -1032,7 +1032,7 @@ new SimGroup(MissionGroup) {
 						position = "-787.366 157.757 363.339";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -1045,7 +1045,7 @@ new SimGroup(MissionGroup) {
 						position = "-794.466 157.88 360.254";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -1058,7 +1058,7 @@ new SimGroup(MissionGroup) {
 						position = "-802.059 157.798 356.954";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -1071,7 +1071,7 @@ new SimGroup(MissionGroup) {
 						position = "-759.908 61.908 324.793";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -1084,7 +1084,7 @@ new SimGroup(MissionGroup) {
 						position = "-764.86 61.855 322.641";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -1097,7 +1097,7 @@ new SimGroup(MissionGroup) {
 						position = "-772.343 61.774 319.388";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -1110,7 +1110,7 @@ new SimGroup(MissionGroup) {
 						position = "-779.608 61.876 316.231";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -1123,7 +1123,7 @@ new SimGroup(MissionGroup) {
 						position = "-787 61.796 313.018";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -1136,7 +1136,7 @@ new SimGroup(MissionGroup) {
 						position = "-794.245 61.718 309.869";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -1149,7 +1149,7 @@ new SimGroup(MissionGroup) {
 						position = "-831.006 61.82 293.893";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -1162,7 +1162,7 @@ new SimGroup(MissionGroup) {
 						position = "-801.713 61.937 306.624";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -1175,7 +1175,7 @@ new SimGroup(MissionGroup) {
 						position = "-809.086 61.857 303.419";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -1188,7 +1188,7 @@ new SimGroup(MissionGroup) {
 						position = "-816.186 61.98 300.334";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -1201,7 +1201,7 @@ new SimGroup(MissionGroup) {
 						position = "-823.779 61.898 297.034";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -1214,7 +1214,7 @@ new SimGroup(MissionGroup) {
 						position = "-759.908 -51.052 324.793";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -1227,7 +1227,7 @@ new SimGroup(MissionGroup) {
 						position = "-764.86 -51.105 322.641";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -1240,7 +1240,7 @@ new SimGroup(MissionGroup) {
 						position = "-772.343 -51.186 319.388";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -1253,7 +1253,7 @@ new SimGroup(MissionGroup) {
 						position = "-779.608 -51.084 316.231";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -1266,7 +1266,7 @@ new SimGroup(MissionGroup) {
 						position = "-787 -51.164 313.018";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -1279,7 +1279,7 @@ new SimGroup(MissionGroup) {
 						position = "-794.245 -51.242 309.869";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -1292,7 +1292,7 @@ new SimGroup(MissionGroup) {
 						position = "-831.006 -51.14 293.893";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -1305,7 +1305,7 @@ new SimGroup(MissionGroup) {
 						position = "-801.713 -51.023 306.624";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -1318,7 +1318,7 @@ new SimGroup(MissionGroup) {
 						position = "-809.086 -51.103 303.419";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -1331,7 +1331,7 @@ new SimGroup(MissionGroup) {
 						position = "-816.186 -50.98 300.334";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -1344,7 +1344,7 @@ new SimGroup(MissionGroup) {
 						position = "-823.779 -51.062 297.034";
 						rotation = "-0.201554 0.199389 0.958968 91.7817";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -2578,7 +2578,7 @@ new SimGroup(MissionGroup) {
 						position = "725.744 153.044 387.129";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -2591,7 +2591,7 @@ new SimGroup(MissionGroup) {
 						position = "730.696 153.095 384.977";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -2604,7 +2604,7 @@ new SimGroup(MissionGroup) {
 						position = "738.179 153.173 381.724";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -2617,7 +2617,7 @@ new SimGroup(MissionGroup) {
 						position = "745.445 153.068 378.567";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -2630,7 +2630,7 @@ new SimGroup(MissionGroup) {
 						position = "752.836 153.145 375.354";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -2643,7 +2643,7 @@ new SimGroup(MissionGroup) {
 						position = "760.082 153.22 372.205";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -2656,7 +2656,7 @@ new SimGroup(MissionGroup) {
 						position = "796.842 153.103 356.229";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -2669,7 +2669,7 @@ new SimGroup(MissionGroup) {
 						position = "767.549 152.998 368.96";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -2682,7 +2682,7 @@ new SimGroup(MissionGroup) {
 						position = "774.922 153.075 365.755";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -2695,7 +2695,7 @@ new SimGroup(MissionGroup) {
 						position = "782.023 152.95 362.67";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -2708,7 +2708,7 @@ new SimGroup(MissionGroup) {
 						position = "789.615 153.028 359.37";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -2721,7 +2721,7 @@ new SimGroup(MissionGroup) {
 						position = "725.744 -168.056 387.129";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -2734,7 +2734,7 @@ new SimGroup(MissionGroup) {
 						position = "730.696 -168.005 384.977";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -2747,7 +2747,7 @@ new SimGroup(MissionGroup) {
 						position = "738.179 -167.927 381.724";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -2760,7 +2760,7 @@ new SimGroup(MissionGroup) {
 						position = "745.445 -168.032 378.567";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -2773,7 +2773,7 @@ new SimGroup(MissionGroup) {
 						position = "752.836 -167.955 375.354";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -2786,7 +2786,7 @@ new SimGroup(MissionGroup) {
 						position = "760.082 -167.88 372.205";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -2799,7 +2799,7 @@ new SimGroup(MissionGroup) {
 						position = "796.842 -167.997 356.229";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -2812,7 +2812,7 @@ new SimGroup(MissionGroup) {
 						position = "767.549 -168.102 368.96";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -2825,7 +2825,7 @@ new SimGroup(MissionGroup) {
 						position = "774.922 -168.025 365.755";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -2838,7 +2838,7 @@ new SimGroup(MissionGroup) {
 						position = "782.023 -168.15 362.67";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -2851,7 +2851,7 @@ new SimGroup(MissionGroup) {
 						position = "789.615 -168.072 359.37";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -2864,7 +2864,7 @@ new SimGroup(MissionGroup) {
 						position = "750.633 -68.4068 325.303";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -2877,7 +2877,7 @@ new SimGroup(MissionGroup) {
 						position = "755.585 -68.3558 323.151";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -2890,7 +2890,7 @@ new SimGroup(MissionGroup) {
 						position = "763.068 -68.2778 319.898";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -2903,7 +2903,7 @@ new SimGroup(MissionGroup) {
 						position = "770.334 -68.3828 316.741";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -2916,7 +2916,7 @@ new SimGroup(MissionGroup) {
 						position = "777.725 -68.3058 313.528";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -2929,7 +2929,7 @@ new SimGroup(MissionGroup) {
 						position = "784.971 -68.2308 310.379";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -2942,7 +2942,7 @@ new SimGroup(MissionGroup) {
 						position = "821.731 -68.3478 294.403";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -2955,7 +2955,7 @@ new SimGroup(MissionGroup) {
 						position = "792.438 -68.4528 307.134";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -2968,7 +2968,7 @@ new SimGroup(MissionGroup) {
 						position = "799.811 -68.3758 303.929";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -2981,7 +2981,7 @@ new SimGroup(MissionGroup) {
 						position = "806.912 -68.5008 300.844";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -2994,7 +2994,7 @@ new SimGroup(MissionGroup) {
 						position = "814.504 -68.4228 297.544";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -3007,7 +3007,7 @@ new SimGroup(MissionGroup) {
 						position = "750.633 47.9932 325.303";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -3020,7 +3020,7 @@ new SimGroup(MissionGroup) {
 						position = "755.585 48.0442 323.151";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -3033,7 +3033,7 @@ new SimGroup(MissionGroup) {
 						position = "763.068 48.1222 319.898";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -3046,7 +3046,7 @@ new SimGroup(MissionGroup) {
 						position = "770.334 48.0172 316.741";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -3059,7 +3059,7 @@ new SimGroup(MissionGroup) {
 						position = "777.725 48.0942 313.528";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -3072,7 +3072,7 @@ new SimGroup(MissionGroup) {
 						position = "784.971 48.1692 310.379";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -3085,7 +3085,7 @@ new SimGroup(MissionGroup) {
 						position = "821.731 48.0522 294.403";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -3098,7 +3098,7 @@ new SimGroup(MissionGroup) {
 						position = "792.438 47.9472 307.134";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -3111,7 +3111,7 @@ new SimGroup(MissionGroup) {
 						position = "799.811 48.0242 303.929";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -3124,7 +3124,7 @@ new SimGroup(MissionGroup) {
 						position = "806.912 47.8992 300.844";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -3137,7 +3137,7 @@ new SimGroup(MissionGroup) {
 						position = "814.504 47.9772 297.544";
 						rotation = "-0.197494 -0.199557 -0.959778 92.9461";
 						scale = "12.4379 4.41548 12.0995";
-						dataBlock = "anomalyTrig";
+						dataBlock = "BoostTrigAnomaly";
 						lockCount = "0";
 						homingCount = "0";
 						polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
@@ -3638,7 +3638,7 @@ new SimGroup(MissionGroup) {
 			position = "391.4 89.8 201.089";
 			rotation = "1 0 0 0";
 			scale = "247.974 246.639 1";
-			dataBlock = "anomalyTrig";
+			dataBlock = "BoostTrigAnomaly";
 			lockCount = "0";
 			homingCount = "0";
 			polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";

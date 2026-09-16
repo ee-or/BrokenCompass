@@ -2403,21 +2403,6 @@ function t1ammoPad::onRemove(%this, %obj){
 // }
 
 
-datablock AudioProfile(ammoPadActivate)
-{
-   filename    = "t1sounds/ammo_activate.wav";
-   description = AudioDefault3d;
-   preload = true;
-};
-
-datablock AudioProfile(ammoPadRun)
-{
-   filename    = "t1sounds/ammo_use.wav";
-   description = AudioDefaultLooping3d;
-   preload = true;
-};
-
-
 datablock StaticShapeData(t1InvyPad)
 {
    catagory = "Stations";

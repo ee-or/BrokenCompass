@@ -29,199 +29,42 @@ function FirnAllFastField::onAdd(%data, %obj){
    }
 }
 
-datablock TriggerData(BoostTrigFirn){
-   tickPeriodMS =  32;
-};
-
-datablock ParticleData(FCannonExplosionSmokeF){
-   dragCoeffiecient     = 0.4;
-   gravityCoefficient   = 1.0;   
-   inheritedVelFactor   = 0.025;
-   lifetimeMS           = 100;
-   lifetimeVarianceMS   = 0;
-   textureName          = "particleTest";
-   useInvAlpha =  0;
-   spinRandomMin = -200.0;
-   spinRandomMax =  200.0;
-
-   colors[0]     = "0.9 0.3 0.0 1.0";
-   colors[1]     = "0.9 0.3 0.0 1";
-   colors[2]     = "0.9 0.3 0.1 1";
-   sizes[0]      = 16.0;
-   sizes[1]      = 16.0;
-   sizes[2]      = 12.0;
-   times[0]      = 0.0;
-   times[1]      = 0.5;
-   times[2]      = 1.0;
-
-};
-
-datablock ParticleEmitterData(FHeavyExplosionSmokeEmitterF){
-   ejectionPeriodMS = 2;
-   periodVarianceMS = 0;
-   ejectionVelocity = 520.25;
-   velocityVariance = 0.25;
-   thetaMin         = 0.0;
-   thetaMax         = 35.0;
-   lifetimeMS       = 200;
-
-   particles = "FCannonExplosionSmokeF";
-};
-
-datablock ParticleData(FCannonSmokeParticleF){
-   dragCoeffiecient     = 0.0;
-   gravityCoefficient   = 0.1;
-   inheritedVelFactor   = 0.00;
-
-   lifetimeMS           = 2000;
-   lifetimeVarianceMS   = 150;
-
-   textureName          = "bsmoke02";
-
-   useInvAlpha = 1;
-   spinRandomMin = -30.0;
-   spinRandomMax = 30.0;
-
-   colors[0]     = "0.2 0.2 0.2 1.0";
-   colors[1]     = "0.2 0.2 0.2 1.0";
-   colors[2]     = "0.2 0.2 0.2 0.0";
-
-   sizes[0]      = 0.25;
-   sizes[1]      = 4.5;
-   sizes[2]      = 4.5;
-
-   times[0]      = 0.0;
-   times[1]      = 0.2;
-   times[2]      = 1.0;
-};
-
-datablock ParticleEmitterData(FCannonSmokeEmitterF){
-   ejectionPeriodMS = 5;
-   periodVarianceMS = 1;
-
-   ejectionVelocity = 14.25;
-   velocityVariance = 0.50;
-
-   thetaMin         = 0.0;
-   thetaMax         = 90.0;
-   lifetimeMS       = 1000;
-   particles = "FCannonSmokeParticleF";
-};
-datablock ExplosionData(FCannonExplosionF){
-   explosionShape = "effect_plasma_explosion.dts";
-   faceViewer           = true;
-
-   delayMS = 200;
-
-   offset = 5.0;
-
-   playSpeed = 1.5;
-
-   sizes[0] = "6.0 6.0 6.0";
-   sizes[1] = "6.0 6.0 6.0";
-   times[0] = 0.0;
-   times[1] = 1.0;
-
-   emitter[0] = FCannonSmokeEmitterF;
-   emitter[1] = FHeavyExplosionSmokeEmitterF;
-  //emitter[2] = HeavyCrescentEmitter;
-
-   shakeCamera = true;
-   camShakeFreq = "10.0 6.0 9.0";
-   camShakeAmp = "20.0 20.0 20.0";
-   camShakeDuration = 1;
-   camShakeRadius = 150.0;
-};
-
-datablock LinearFlareProjectileData(CannonEffectF){
-   projectileShapeName = "plasmabolt.dts";
-   scale               = "0.1 0.1 0.1";
-   faceViewer          = true;
-   directDamage        = 0.0;
-   hasDamageRadius     = false;
-   indirectDamage      = 0.0;
-   damageRadius        = 0.0;
-   kickBackStrength    = 0.0;
-   radiusDamageType    = $DamageType::Plasma;
-
-   explosion           = "FCannonExplosionF";
-
-   dryVelocity       = 32; 
-   wetVelocity       = -1;
-   velInheritFactor  = 0.3;
-   fizzleTimeMS      = 0;
-   lifetimeMS        = 125;
-   explodeOnDeath    = true;
-   reflectOnWaterImpactAngle = 0.0;
-   explodeOnWaterImpact      = true;
-   deflectionOnWaterImpact   = 0.0;
-   fizzleUnderwaterMS        = -1;
-
-   //activateDelayMS = 100;
-   activateDelayMS = -1;
-
-   size[0]           = 0.2;
-   size[1]           = 0.5;
-   size[2]           = 0.1;
-
-
-   numFlares         = 35;
-   flareColor        = "1 0.75 0.25";
-   flareModTexture   = "flaremod";
-   flareBaseTexture  = "flarebase";
-
-	sound        = PlasmaProjectileSound;
-   fireSound    = PlasmaFireSound;
-   wetFireSound = PlasmaFireWetSound;
-   
-   hasLight    = true;
-   lightRadius = 3.0;
-   lightColor  = "1 0.75 0.25";
-};
-
-datablock AudioProfile(boostSoundF){
-   filename    = "fx/Bonuses/upward_straipass2_elevator.wav";
-   description = AudioExplosion3d;
-   preload = true;
-};
-
 function SimObject::getUpVectorFirn(%obj){
    %rot = getWords(%obj.getTransform(), 3, 6);  
    %tmat = VectorOrthoBasis(%rot);
    return getWords(%tMat, 6, 8);
 }
-datablock AudioProfile(CannonExpSoundF){
-   filename    = "fx/powered/turret_mortar_explode.wav";
-   description = "AudioExplosion3d";
-   preload = true;
+datablock TriggerData(BoostTrigFirn){
+   tickPeriodMS = 32;
 };
+
 function BoostTrigFirn::onEnterTrigger(%data, %trigger, %player){
-   
+
    if(!Game.firnSet){
       Game.firnSet = 1;
-      seeA.setScopeAlways(); 
-      seeB.setScopeAlways(); 
-      seeC.setScopeAlways(); 
+      seeA.setScopeAlways();
+      seeB.setScopeAlways();
+      seeC.setScopeAlways();
    }
 
    if(%trigger.mode == 1){
       %player.setPosition(%trigger.getWorldBoxCenter());
-      %vel = VectorScale(VectorNormalize(%trigger.getUpVectorFirn()), 100);   
+      %vel = VectorScale(VectorNormalize(%trigger.getUpVectorFirn()), 100);
       %player.setVelocity(%vel);
       if(getSimTime() - %player.boostTrigTime > 2000){
          serverPlay3D(forceTrig, %trigger.getTransform());
-         %player.client.play2D(boostSoundF);
+         %player.client.play2D(BoostSound);
       }
       %player.boostTrigTime = getSimTime();
    }
    else if(%trigger.mode == 2){
       %trigPos = %trigger.getWorldBoxCenter();
       %player.setPosition(%trigPos);
-      %vel = VectorScale(VectorNormalize(%trigger.getUpVectorFirn()), 100);   
+      %vel = VectorScale(VectorNormalize(%trigger.getUpVectorFirn()), 100);
       %player.setVelocity(%vel);
-      serverPlay3D(CannonExpSoundF, %trigger.getTransform());
+      serverPlay3D(BoostCannonExpSound, %trigger.getTransform());
       %p = new LinearFlareProjectile() {
-         dataBlock        = CannonEffectF;
+         dataBlock        = BoostCannonEffect;
          initialDirection = %trigger.getUpVectorFirn();
          initialPosition  = %trigPos;
          sourceObject     = %player;
