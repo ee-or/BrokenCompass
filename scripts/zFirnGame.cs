@@ -175,7 +175,7 @@ datablock ParticleEmitterData(HvySnowMistEmitter) {
    overrideAdvance = "1";
    orientParticles = "0";
    orientOnVelocity = "1";
-   particles = "RainMistParticle";
+   particles = "HvySnowMistParticle";
    lifetimeMS = "0";
    lifetimeVarianceMS = "0";
    reverseOrder = "0";

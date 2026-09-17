@@ -91,7 +91,7 @@ new SimGroup(MissionGroup) {
 		fogVolume1 = "0 0 0";
 		fogVolume2 = "0 0 0";
 		fogVolume3 = "0 0 0";
-		materialList = "sky_desert_blue.dml";
+		materialList = "sky_desert_blue2.dml";
 		windVelocity = "0 6 0";
 		windEffectPrecipitation = "0";
 		fogVolumeColor1 = "128.000000 128.000000 128.000000 -1734829824.000000";
