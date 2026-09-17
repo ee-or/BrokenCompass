@@ -624,12 +624,8 @@ if(!isEventPending($zapSimEvent)){
 	floodblock.simSec = 0;
 	$zapSimEvent = schedule(10000, 0, "stormragesim");// allow time in case we open the editor 
 }
-datablock StaticShapeData(StormGameStart){
-   catagory = "misc";
-   shapeFile = "flag.dts";
-};
-function StormGameStart::onAdd(%this, %obj){  
-   Parent::onAdd(%this, %obj);
+
+function stormGameStart(){  
    if(!isEventPending($zapSimEvent)){
       floodblock.he = 0;
       floodblock.simSec = 0;
@@ -637,7 +633,6 @@ function StormGameStart::onAdd(%this, %obj){
    }
 }
 
-function StormGameStart::onRemove(%this, %Obj){
-   Parent::onRemove();
+function stormGameEnd(){
    cancel($zapSimEvent);// end the sim 
 }

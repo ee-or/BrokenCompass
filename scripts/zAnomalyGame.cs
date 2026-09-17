@@ -5,23 +5,13 @@ if($Anomaly::editMode){
    autoExec("scripts/zAnomalyGame.cs",0,0);
 }
 
-
 function SimObject::setPosition(%obj, %pos){
      %obj.setTransform(%pos SPC getWords(%obj.getTransform(), 3, 6));
 }
 
-datablock StaticShapeData(AGameStart){
-   catagory = "misc";
-   shapeFile = "flag.dts";
-};
-function AGameStart::onAdd(%this, %obj){  
-   Parent::onAdd(%this, %obj);
-   if(!isObject(StartScriptObj)){
-      %obj.setName("StartScriptObj");
-   }
-   if(!Game.aStart && !$Anomaly::editMode){
-       aGameLoop();
-      Game.aStart = 0;
+function AGameStart(){  
+   if(!$Anomaly::editMode){
+      aGameLoop();
    }
 }
 

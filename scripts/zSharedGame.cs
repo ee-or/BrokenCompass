@@ -206,3 +206,45 @@ datablock LinearFlareProjectileData(BoostCannonEffect)
    lightRadius = 3.0;
    lightColor  = "1 0.75 0.25";
 };
+
+datablock StaticShapeData(mapScriptStart){
+   catagory = "misc";
+   shapeFile = "flag.dts";
+};
+
+function mapScriptStart::onAdd(%this, %obj){
+   Parent::onAdd(%this, %obj);
+   if(%obj.startScript !$= ""){
+      call(%obj.startScript);
+      error("mapScriptStart::onAdd() called startScript" SPC %obj.startScript);
+   }
+}
+function mapScriptStart::onRemove(%this, %obj){
+   Parent::onRemove(%this, %obj);
+   if(%obj.endScript !$= ""){
+      call(%obj.endScript);
+      error("mapScriptStart::onRemove() called endScript" SPC %obj.endScript);
+   }
+}
+
+datablock TriggerData(deathTrig){
+   tickPeriodMS = 32;
+};
+
+function deathTrig::onEnterTrigger(%data, %trigger, %player){
+   %player.scriptKill(%trigger.deathType);
+}
+
+function deathTrig::onleaveTrigger(%data, %trigger, %player){
+   return;
+}
+
+function deathTrig::onTickTrigger(%data, %trig){
+   return;
+}
+
+function physZoneDelete(){
+   if(isObject(PZones)){
+      PZones.delete();
+   }
+}

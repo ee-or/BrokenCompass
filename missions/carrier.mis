@@ -1711,20 +1711,21 @@ new SimGroup(MissionGroup) {
 		position = "-147.427 22.4918 100.051";
 		rotation = "1 0 0 0";
 		scale = "4.5119 43.1914 7.40907";
-		dataBlock = "deathTrigCarrier";
+		dataBlock = "deathTrig";
 		lockCount = "0";
 		homingCount = "0";
 		polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
-
+		deathType = 13;
 		locked = "true";
 	};
 	new Trigger() {
 		position = "-147.307 194.492 100.051";
 		rotation = "1 0 0 0";
 		scale = "4.5119 43.1914 7.40907";
-		dataBlock = "deathTrigCarrier";
+		dataBlock = "deathTrig";
 		lockCount = "0";
 		homingCount = "0";
+		deathType = 13;
 		polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
 
 		locked = "true";
@@ -1761,11 +1762,11 @@ new SimGroup(MissionGroup) {
 		position = "-1011.27 1089.28 37.0508";
 		rotation = "1 0 0 0";
 		scale = "620.447 1990.05 135.391";
-		dataBlock = "deathTrigCarrier";
+		dataBlock = "deathTrig";
 		lockCount = "0";
 		homingCount = "0";
 		polyhedron = "0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 -0.0000000 -0.0000000 1.0000000";
-
+		deathType = 14;
 		locked = "true";
 	};
 };

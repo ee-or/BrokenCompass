@@ -1,24 +1,3 @@
-datablock TriggerData(deathTrigCarrier){
-   tickPeriodMS = 32;
-};
-
-function deathTrigCarrier::onEnterTrigger(%data, %trigger, %player){
-   %x = getWord(%player.getPosition(),0);
-   if(%x < -370){
-      %player.scriptKill($DamageType::Ground);
-   }
-   else{
-      %player.scriptKill($DamageType::Impact);
-   }
-}
-
-function deathTrigCarrier::onleaveTrigger(%data, %trigger, %player){
-   return;
-}
-
-function deathTrigCarrier::onTickTrigger(%data, %trig){
-   return;
-}
 
 datablock StaticShapeData(dnTest)
 {

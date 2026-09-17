@@ -1890,10 +1890,9 @@ function bbSwitchInit(){
 }
 
 
-function CannonBlocker::onAdd(%data, %obj){
-   parent::onAdd(%data,%obj);
-   if(%obj.pz.getClassName() $= "PhysicalZone"){
-		%obj.pz.delete(); 
+function bbGameStart(){
+   if(isObject(PZones)){
+      PZones.delete();
    }
    if(!isEventPending($BBSimEvent)){
       $tickCountBB = 0;
@@ -1905,25 +1904,11 @@ function CannonBlocker::onAdd(%data, %obj){
    }
 } 
 
-function CannonBlocker::onRemove(%this, %obj){
+function bbGameEnd(){
    if (isActivePackage(bbSpawn)){
       deactivatePackage(bbSpawn);
       $AmmoStation::mode = 1;
    }
-}
-
-function powerLiftEffect::onAdd(%data, %obj){
-   parent::onAdd(%data,%obj);
-   if(%obj.pz.getClassName() $= "PhysicalZone"){
-		%obj.pz.delete(); 
-   }
-}
-
-function ccScreenLines::onAdd(%data, %obj){
-   parent::onAdd(%data,%obj);
-   if(%obj.pz.getClassName() $= "PhysicalZone"){
-		%obj.pz.delete(); 
-   } 
 }
 
 function SimObject::getUpVector(%obj){

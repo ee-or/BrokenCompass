@@ -3503,7 +3503,7 @@ datablock FlyingVehicleData(T1ScoutFlyer) : ShrikeDamageProfile
 //   runningLight[1] = ShrikeLight2;
 
    shieldEffectScale = "0.937 1.125 0.60";
-
+   lightOnly = 1;
 };
 datablock AudioProfile(T1ScoutFireSound)
 {
@@ -3764,19 +3764,30 @@ function T1ScoutMissilePairImage::onUnmount(%this,%obj,%slot)
 {
 }
 
+function t1IsRetroBody(%player){
+   return isObject(%player) && strstr(%player.getDataBlock().getName(), "TR1Armor") != -1;
+}
 
 function T1ScoutFlyer::playerMounted(%data, %obj, %player, %node)
 {
-   if(%node == 0) {
-      // pilot position
-	   //commandToClient(%player.client, 'setHudMode', 'Pilot', "HAPC", %node);
-      commandToClient(%player.client, 'setHudMode', 'Pilot', "Shrike", %node);
+   // Retro bodies sit further back than stock ones, so move a T1 pilot forward
+   // onto Mount1. Bots stay on Mount0: Armor::AIonMount ejects a pilot bot that
+   // lands on any node but 0.
+   if(%node == 0 && t1IsRetroBody(%player) && !%player.client.isAIControlled()){
+      %player.t1Seat = true;
+      %obj.mountObject(%player, 1);
+      // The fix-ups MUST come after the remount. mountObject unmounts first, and
+      // Armor::onUnmount(0) re-equips the weapon, sends VehicleDismount and drops
+      // the pose; Armor::onMount(1) then takes the passenger branch. Done before
+      // the remount, all three get undone and the pilot flies with the weapon
+      // still mounted -- which then leaves nothing to re-mount on dismount, so
+      // the reticle never comes back.
+      %player.unmountImage($WeaponSlot);
+      %player.setActionThread(%data.mountPose[0], true, true);
+      commandToClient(%player.client, 'VehicleMount');
+   }
+   commandToClient(%player.client, 'setHudMode', 'Pilot', "Shrike", 0);
 
-   }
-   else {
-      // all others
-	   commandToClient(%player.client, 'setHudMode', 'Passenger', "HAPC", %node);
-   }
    // update observers who are following this guy...
    if( %player.client.observeCount > 0 )
       resetObserveFollow( %player.client, false );
@@ -3784,10 +3795,46 @@ function T1ScoutFlyer::playerMounted(%data, %obj, %player, %node)
 
 function T1ScoutFlyer::playerDismounted(%data, %obj, %player)
 {
+   // Leaving from Mount1 takes Armor::onUnmount's passenger branch, which skips
+   // the pilot clean-up. Keyed on the flag, not the body: a T1 bot never
+   // reseats, so it already got the stock clean-up from node 0.
+   if(%player.t1Seat){
+      %player.t1Seat = "";
+      commandToClient(%player.client, 'VehicleDismount');
+      commandToClient(%player.client, 'removeReticle');
+      // Clear the slot first so use() genuinely mounts the image -- mounting
+      // over an image that is already there is a no-op, and it is the image's
+      // mount that puts the reticle back.
+      %player.unmountImage($WeaponSlot);
+      if(%player.inv[%player.lastWeapon])
+         %player.use(%player.lastWeapon);
+      else if(%player.getMountedImage($WeaponSlot) == 0)
+         %player.selectWeaponSlot(0);
+   }
+
    %obj.fireWeapon = false;
    %obj.setImageTrigger(2, false);
    %obj.setImageTrigger(3, false);
    setTargetSensorGroup(%obj.getTarget(), %obj.team);
+
+}
+
+function T1ScoutFlyer::onDestroyed(%data, %obj, %prevState)
+{
+   // The stock fling loop stops at numMountPoints (1), so a pilot reseated on
+   // Mount1 never gets doDismount -- the vehicle's deletion drops them with no
+   // HUD reset, control object or weapon. Parent only freezes the wreck and
+   // schedules the delete, so the pilot is still mounted when it returns.
+   Parent::onDestroyed(%data, %obj, %prevState);
+   %flingee = %obj.getMountNodeObject(1);
+   if(isObject(%flingee)){
+      %flingee.getDataBlock().doDismount(%flingee, true);
+      %xVel = 250.0 - (getRandom() * 500.0);
+      %yVel = 250.0 - (getRandom() * 500.0);
+      %zVel = (getRandom() * 100.0) + 50.0;
+      %flingee.applyImpulse(%flingee.getTransform(), %xVel @ " " @ %yVel @ " " @ %zVel);
+      %flingee.damage(0, %obj.getPosition(), 0.4, $DamageType::Crash);
+   }
 }
 
 $Vehiclemax[T12ScoutFlyer]     = 4;
@@ -7663,7 +7710,7 @@ datablock TSShapeConstructor(larmorDts)
    sequence38 = "larmor_taunt_1.dsq cel4";
    sequence39 = "larmor_wave.dsq wave";
    sequence40 = "larmor_throw.dsq throw";
-   sequence41 = "larmor_flyer_root.dsq flyer_root";
+   sequence41 = "larmor_flyer_root.dsq scoutroot";
    sequence42 = "larmor_pose_kneel.dsq pose_kneel";
    sequence43 = "larmor_pose_stand.dsq pose_stand";
    sequence44 = "larmor_look.dsq look";
@@ -7783,7 +7830,7 @@ datablock TSShapeConstructor(lfemaleDts)
    sequence8 = "lfemale_looks.dsq looks";
    sequence9 = "lfemale_pda_access.dsq pda";
    sequence10 = "lfemale_throw.dsq throw";
-   sequence11 = "lfemale_flyer_root.dsq flyer_root";
+   sequence11 = "lfemale_flyer_root.dsq scoutroot";
    sequence12 = "lfemale_apc_root.dsq apc_root";
    sequence13 = "lfemale_celebration_1.dsq cel1";
    sequence14 = "lfemale_celebration_2.dsq cel2";
@@ -8025,29 +8072,13 @@ t1FlagSnd("fx/misc/flag_capture.wav", "fx/misc/flagcapture.wav");
 t1FlagSnd("fx/misc/flag_return.wav",  "fx/misc/flagreturn.wav");
 t1FlagSnd("fx/misc/flag_lost.wav",    "fx/misc/flagself.wav");
 
-// The world flag, and the one mounted on the carrier.
-//
-// `: Flag` ALONE DOES NOT INHERIT THE SCRIPT CALLBACKS -- it only copies fields.
-// compiledEval.cc:547 does exactly one thing with the parent, dataBlock->assignFieldsFrom
-// (parent); there is no namespace link. Without the className below, Flag::onThrow and
-// every other Flag:: callback would simply stop being reached once an object was swapped.
-//
-// `className` is what does it. GameBaseData::onAdd (gameBase.cc:53) does
-//     Con::linkNamespaces(parent->mName, className);
-//     Con::linkNamespaces(className, name);
-// so declaring className = Flag makes T1Flag's parent namespace Flag, and T1Flag::onThrow
-// falls through. This is also why the TR1 armors work: stock armors carry
-// className = Armor, and the field copy above brings it along.
-//
-// computeCRC is off deliberately. Stock Flag has it ON, and leaving it on would require
-// every client to hold a byte-identical t1baseflag.dts or fail the check. Turn it back on
-// once the shape is settled and distributed.
 datablock ItemData(T1Flag) : Flag
 {
    className = Flag;
    shapeFile = "t1baseflag.dts";
    computeCRC = false;
 };
+
 datablock ShapeBaseImageData(T1FlagImage) : FlagImage
 {
    offset = "0 -0.12 0";
@@ -8055,7 +8086,6 @@ datablock ShapeBaseImageData(T1FlagImage) : FlagImage
    shapeFile = "t1baseflag.dts";
    computeCRC = false;
 };
-
 
 function t1IsFlag(%obj){
    if(!isObject(%obj) || !isObject(%obj.getDataBlock()))

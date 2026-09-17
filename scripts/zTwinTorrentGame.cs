@@ -213,9 +213,3 @@ function wpDeathTrigger::onTickTrigger(%data, %trig){
       }
    }
 }
-function SXAllFastField::onAdd(%data, %obj){
-   parent::onAdd(%data,%obj);
-   if(%obj.pz.getClassName() $= "PhysicalZone"){
-		%obj.pz.delete(); 
-   }
-}

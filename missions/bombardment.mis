@@ -6006,5 +6006,20 @@ new SimGroup(MissionGroup) {
 
 		digit = "0";
 	};
+	
+	new StaticShape(StartScriptObj) {
+		position = "-2.24377 -8.58003 -5178.595";
+		rotation = "1 0 0 0";
+		scale = "1 1 1";
+		nameTag = "Base";
+		dataBlock = "mapScriptStart";
+		lockCount = "0";
+		homingCount = "0";
+		startScript = "bbGameStart";
+		endScript = "bbGameEnd";
+		enable = "1";
+		locked = "true";
+		Target = "-1";
+	};
 };
 //--- OBJECT WRITE END ---

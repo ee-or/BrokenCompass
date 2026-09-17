@@ -1232,13 +1232,7 @@ datablock ParticleEmitterData(vocAshSmokeEmitter) {
    particles = "vocAshSmokeParticle";
    
 };
-
-datablock StaticShapeData(infernoGameStart){
-   catagory = "misc";
-   shapeFile = "flag.dts";
-};
-function infernoGameStart::onAdd(%this, %obj){  
-   Parent::onAdd(%this, %obj);
+function infernoGameStart(){  
    $InvBanList[CTF, "SniperRifle"] = 1;// ban sniper rifles from this map 
    if(!isEventPending($voc3SimEvent)){
       lavablock.he = 0;

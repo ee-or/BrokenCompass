@@ -1366,17 +1366,18 @@ new SimGroup(MissionGroup) {
 		locked = "true";
 	};
 	new StaticShape(StormGameStartObj) {
-		position = "0 0 -1000";
+		position = "-2.24377 -8.58003 -4178.595";
 		rotation = "1 0 0 0";
 		scale = "1 1 1";
 		nameTag = "Base";
-		dataBlock = "StormGameStart";
+		dataBlock = "mapScriptStart";
 		lockCount = "0";
 		homingCount = "0";
-
+		startScript = "stormGameStart";
+		endScript = "stormGameEnd";
 		enable = "1";
-		Target = "-1";
 		locked = "true";
+		Target = "-1";
 	};
 };
 //--- OBJECT WRITE END ---
