@@ -771,36 +771,7 @@ new SimGroup(MissionGroup) {
 					team = "0";
 					mode = "1";
 				};
-				new Item() {
-					position = "8.0322 -6.51185 251.141";
-					rotation = "0 0 1 180.091";
-					scale = "1 1 1";
-					dataBlock = "dragonBoltWep";
-					lockCount = "0";
-					homingCount = "0";
-					collideable = "0";
-					static = "1";
-					rotate = "0";
-
-					locked = "true";
-					team = "0";
-					Target = "-1";
-				};
-				new Item(bigWep) {
-					position = "18.8341 -6.43166 250.969";
-					rotation = "0 0 1 89.9544";
-					scale = "1 1 1";
-					dataBlock = "SEStrike";
-					lockCount = "0";
-					homingCount = "0";
-					collideable = "0";
-					static = "1";
-					rotate = "0";
-
-					locked = "true";
-					team = "0";
-					Target = "-1";
-				};
+				
 				new ForceFieldBare() {
 					position = "17.9509 -6.97891 250.422";
 					rotation = "1 0 0 0";
@@ -905,21 +876,6 @@ new SimGroup(MissionGroup) {
 
 					locked = "true";
 					team = "0";
-				};
-				new Item() {
-					position = "29.7813 -6.84196 251.181";
-					rotation = "0 0 -1 0.573347";
-					scale = "1 1 1";
-					dataBlock = "DragonsFireWep";
-					lockCount = "0";
-					homingCount = "0";
-					collideable = "1";
-					static = "1";
-					rotate = "0";
-
-					locked = "true";
-					team = "0";
-					Target = "-1";
 				};
 				new TSStatic() {
 					position = "29.7678 -6.61168 249.052";
@@ -1667,3 +1623,57 @@ new SimGroup(MissionGroup) {
 	};
 };
 //--- OBJECT WRITE END ---
+
+function addTwinDrakeWeps(){
+	if(!$Host::DMP2TwinDrakes){
+		return;
+	}
+	new Item(fireWep) {
+		position = "29.7813 -6.84196 251.181";
+		rotation = "0 0 -1 0.573347";
+		scale = "1 1 1";
+		dataBlock = "DragonsFireWep";
+		lockCount = "0";
+		homingCount = "0";
+		collideable = "1";
+		static = "1";
+		rotate = "0";
+
+		locked = "true";
+		team = "0";
+		Target = "-1";
+	};
+	Team0.add( fireWep );
+	new Item(dragonBoltWep) {
+		position = "8.0322 -6.51185 251.141";
+		rotation = "0 0 1 180.091";
+		scale = "1 1 1";
+		dataBlock = "dragonBoltWep";
+		lockCount = "0";
+		homingCount = "0";
+		collideable = "0";
+		static = "1";
+		rotate = "0";
+
+		locked = "true";
+		team = "0";
+		Target = "-1";
+	};
+	Team0.add( dragonBoltWep );
+	new Item(bigWep) {
+		position = "18.8341 -6.43166 250.969";
+		rotation = "0 0 1 89.9544";
+		scale = "1 1 1";
+		dataBlock = "SEStrike";
+		lockCount = "0";
+		homingCount = "0";
+		collideable = "0";
+		static = "1";
+		rotate = "0";
+
+		locked = "true";
+		team = "0";
+		Target = "-1";
+	};
+	Team0.add( bigWep );
+}addTwinDrakeWeps();

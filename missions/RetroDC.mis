@@ -12,6 +12,17 @@
 //
 //--- MISSION STRING END ---
 
+if(!$Host::DMP2StarSeigeTribes){ 
+	if(isFile("missions/TWL_DangerousCrossing.mis")){
+		exec("missions/TWL_DangerousCrossing.mis");
+	}
+	else{
+		exec("missions/DangerousCrossing_nef.mis");
+	}
+	messageAll('MsgClient', "\c2Starsiege tribes data is disabled. Loading default mission instead.");
+	return;
+}
+
 //--- OBJECT WRITE BEGIN ---
 new SimGroup(MissionGroup) {
 
@@ -53,7 +64,7 @@ new SimGroup(MissionGroup) {
 		rotation = "1 0 0 0";
 		scale = "1 1 1";
 		detailTexture = "details/lushdet2";
-		terrainFile = "retrodx.ter";
+		terrainFile = "retroDC.ter";
 		squareSize = "8";
 
 		visibleDistance = "500";

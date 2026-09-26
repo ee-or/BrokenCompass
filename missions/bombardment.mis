@@ -11,6 +11,18 @@
 //<color:008B8B>Map by DarkTiger
 //--- MISSION STRING END ---
 
+if(!$Host::DMP2Bombbardment){ 
+	%nextMission = findNextCycleMission($CurrentMissionType);
+	%file = "missions/" @ %nextMission @ ".mis";
+
+	buildLoadInfo( %nextMission, $CurrentMissionType );
+	$CurrentMission = %nextMission;
+	$MissionName = %nextMission;
+	messageAll('MsgClient', "\c2DMP2 Bombardment data is disabled. Loading %1 mission instead.", %nextMission);
+	exec(%file);
+	return;
+}
+
 //--- OBJECT WRITE BEGIN ---
 new SimGroup(MissionGroup) {
 

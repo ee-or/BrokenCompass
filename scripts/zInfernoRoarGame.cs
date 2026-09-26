@@ -9,16 +9,18 @@ function voc3Sim(){
 			lavablock.setTransform(vectorAdd(lavablock.getPosition(), "0 0" SPC %amount) SPC "0 0 1 0");
 		}
 		lavablock.simSec++;
-		if(lavablock.simSec >= (60 * 5) && !lavablock.teamOne){
-			vocBoom(1);
-			lavablock.teamOne = 1;
-		}
-		
-		if(lavablock.simSec >= (60 * 10) && !lavablock.teamTwo){
-			vocBoom(2);
-			lavablock.teamTwo = 1;
-		}
-		voc3Spew();
+      if($Host::DMP2InfernoRoar){
+         if(lavablock.simSec >= (60 * 5) && !lavablock.teamOne){
+            vocBoom(1);
+            lavablock.teamOne = 1;
+         }
+         
+         if(lavablock.simSec >= (60 * 10) && !lavablock.teamTwo){
+            vocBoom(2);
+            lavablock.teamTwo = 1;
+         }
+         voc3Spew();
+      }
 	}
 	if(isObject(infernoGameStartObj)){
 		$voc3SimEvent = schedule(1000, 0, "voc3Sim");
@@ -350,6 +352,20 @@ function vocSkyEvent(){
    }
 }
 
+function infernoGameStart(){  
+   $InvBanList[CTF, "SniperRifle"] = 1;// ban sniper rifles from this map 
+   if(!isEventPending($voc3SimEvent)){
+      lavablock.he = 0;
+      lavablock.simSec = 0;
+      lavablock.teamOne = 0;
+      lavablock.teamTwo = 0;
+      $voc3SimEvent = schedule(35000, 0, "voc3Sim");// allow time in case we open the editor 
+   }
+}
+
+if(!$Host::DMP2InfernoRoar){ 
+   return;
+}
 
 datablock ParticleEmissionDummyData(manyTimeEmissionDummy){
    timeMultiple = 20.0;
@@ -1232,13 +1248,3 @@ datablock ParticleEmitterData(vocAshSmokeEmitter) {
    particles = "vocAshSmokeParticle";
    
 };
-function infernoGameStart(){  
-   $InvBanList[CTF, "SniperRifle"] = 1;// ban sniper rifles from this map 
-   if(!isEventPending($voc3SimEvent)){
-      lavablock.he = 0;
-      lavablock.simSec = 0;
-      lavablock.teamOne = 0;
-      lavablock.teamTwo = 0;
-      $voc3SimEvent = schedule(35000, 0, "voc3Sim");// allow time in case we open the editor 
-   }
-}

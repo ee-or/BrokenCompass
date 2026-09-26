@@ -1,5 +1,3 @@
-//autoExec("scripts/twinDrakesGame.cs",0,0);
-
 $dragon::fireTime = 1000 * 20;
 $dragon::burn = 0;//leave zero
 $dragon::burnBoltEnable = 0; // enable burning on dragon bolt
@@ -470,6 +468,11 @@ function isDead(%obj){
    }
    return 0;
 }
+
+if(!$Host::DMP2TwinDrakes){ 
+   return;
+}
+
 
 function DragonsFireWep::onCollision(%data,%obj,%col){
    if (%col.getDataBlock().className $= Armor && %col.getState() !$= "Dead" && !%col.isMounted()){

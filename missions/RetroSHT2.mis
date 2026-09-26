@@ -11,7 +11,16 @@
 //<color:008B8B>Map by Nefilim (assisted: z0dd)
 //T1 Assets: DarkTiger
 //--- MISSION STRING END ---
-
+if(!$Host::DMP2StarSeigeTribes){ 
+	if(isFile("missions/TWL_Stonehenge.mis")){
+		exec("missions/TWL_Stonehenge.mis");
+	}
+	else{
+		exec("missions/Stonehenge_nef.mis");
+	}
+	messageAll('MsgClient', "\c2Starsiege tribes data is disabled. Loading default mission instead.");
+	return;
+}
 //--- OBJECT WRITE BEGIN ---
 new SimGroup(MissionGroup) {
 

@@ -79,66 +79,13 @@ function BoostTrigFirn::onTickTrigger(%this, %triggerId){
 }
 
 
-datablock ParticleData(SnowMistParticle) {
-   dragCoefficient = "0";
-   windCoefficient = "-1";
-   gravityCoefficient = "0";
-   inheritedVelFactor = "0";
-   constantAcceleration = "0";
-   lifetimeMS = "4000";
-   lifetimeVarianceMS = "200";
-   spinSpeed = "1";
-   spinRandomMin = "-50";
-   spinRandomMax = "50";
-   useInvAlpha = "0";
-   textureName = "precipitation/snowflake002";
-   colors[0] = "0.3 0.3 0.3 0.0";
-   colors[1] = "0.3 0.3 0.3 1";
-   colors[2] = "0.3 0.3 0.3 1";
-   colors[3] = "0.0787402 0.0787402 0.0787402 1";
-   sizes[0] = "0.5";
-   sizes[1] = "0.5";
-   sizes[2] = "0.5";
-   sizes[3] = "0.5";
-   times[0] = "0.1";
-   times[1] = "0.2";
-   times[2] = "0.9";
-   times[3] = "1";
-};
-
-datablock ParticleEmitterData(SnowMistEmitter) {
-   ejectionPeriodMS = "12";
-   periodVarianceMS = "0";
-   ejectionVelocity = "140";
-   velocityVariance = "50";
-   ejectionOffset = "50";
-   ejectionOffsetVariance = "0";
-   thetaMin = "0";
-   thetaMax = "15";
-   phiReferenceVel = "0";
-   phiVariance = "360";
-   softnessDistance = "1";
-   ambientFactor = "0";
-   overrideAdvance = "1";
-   orientParticles = "0";
-   orientOnVelocity = "1";
-   particles = "SnowMistParticle";
-   lifetimeMS = "0";
-   lifetimeVarianceMS = "0";
-   reverseOrder = "0";
-   alignParticles = "0";
-   alignDirection = "0 1 0";
-   highResOnly = "1";
-};
-
-
 datablock ParticleData(HvySnowMistParticle) {
    dragCoefficient = "0";
    windCoefficient = "0.05";
    gravityCoefficient = "0";
    inheritedVelFactor = "0";
    constantAcceleration = "0";
-   lifetimeMS = "4000";
+   lifetimeMS = "6000";
    lifetimeVarianceMS = "200";
    spinSpeed = "1";
    spinRandomMin = "-50";

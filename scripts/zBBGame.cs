@@ -1,3 +1,8 @@
+if(!$Host::DMP2Bombbardment){ 
+   return;
+}
+
+
 $bbGame::ionCannonMode = 1;// if one turns the game into lctf 0 just wipe the map and reset flags 
 
 datablock ForceFieldBareData(CannonBlocker)

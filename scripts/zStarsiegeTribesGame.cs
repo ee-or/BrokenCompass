@@ -1,4 +1,12 @@
-autoExec("scripts/StarsiegeTribes.cs",0,0);
+if(!$Host::DMP2StarSeigeTribes){ 
+   return;
+}
+if((2048 - DatablockGroup.getCount()) < 200){
+   error("ERROR: Not enough datablock space for Star Siege Tribes.  Please remove some other datablocks.");
+   $Host::DMP2StarSeigeTribes = 0;
+   return;
+}
+
 $T1ScriptExec = 1;
 
 $T1OnlyWeapons = 0;

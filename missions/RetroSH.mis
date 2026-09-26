@@ -10,7 +10,16 @@
 //No vehicle stations
 //Map by DarkTiger
 //--- MISSION STRING END ---
-
+if(!$Host::DMP2StarSeigeTribes){ 
+	if(isFile("missions/TWL_Stonehenge.mis")){
+		exec("missions/TWL_Stonehenge.mis");
+	}
+	else{
+		exec("missions/Stonehenge_nef.mis");
+	}
+	messageAll('MsgClient', "\c2Starsiege tribes data is disabled. Loading default mission instead.");
+	return;
+}
 //--- OBJECT WRITE BEGIN ---
 new SimGroup(MissionGroup) {
 
