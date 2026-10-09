@@ -618,13 +618,6 @@ function setupTR(%radius,%radius2,%layer,%layerSpace,%cf,%ad,%rx,%zoff,%delTime)
    weatherEvents.sch[13] = TR.schedule(%delTime, "delete");
 }
 
-
-if(!isEventPending($zapSimEvent)){
-	floodblock.he = 0;
-	floodblock.simSec = 0;
-	$zapSimEvent = schedule(10000, 0, "stormragesim");// allow time in case we open the editor 
-}
-
 function stormGameStart(){  
    if(!isEventPending($zapSimEvent)){
       floodblock.he = 0;
