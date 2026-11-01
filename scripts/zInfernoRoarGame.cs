@@ -1,3 +1,9 @@
+// Unset counts as enabled; only an explicit 0 in the prefs turns this off.
+// Set here, before this file or the map checks it, so a plain
+// if(!$Host::DMP2InfernoRoar) works everywhere.
+if($Host::DMP2InfernoRoar $= "")
+   $Host::DMP2InfernoRoar = 1;
+
 $vocTimeSec = 25 * 60;
 $vocFloodAmount = 25;
 

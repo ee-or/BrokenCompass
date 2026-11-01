@@ -1,3 +1,9 @@
+// Unset counts as enabled; only an explicit 0 in the prefs turns this off.
+// Set here, before this file or the map checks it, so a plain
+// if(!$Host::DMP2StarSeigeTribes) works everywhere.
+if($Host::DMP2StarSeigeTribes $= "")
+   $Host::DMP2StarSeigeTribes = 1;
+
 if(!$Host::DMP2StarSeigeTribes){ 
    return;
 }
@@ -48,23 +54,22 @@ function T1StartObj::onAdd(%this, %obj){
       loadRetInfo(1);// load ret and weapon info fail safe for single player
    }
    if($T1OnlyWeapons){
-      if(!$InvyBanDef){
-         $InvBanDef["CTF", "ShockLance"] =  $InvBanList["CTF", "ShockLance"];
-         $InvBanDef["CTF", "MissileLauncher"] =  $InvBanList["CTF", "MissileLauncher"];
+      // Taken fresh on every pure-T1 map: onRemove puts these back, and a copy kept
+      // from the first one would undo any ban changes made since (AntiPack etc).
+      $InvBanDef["CTF", "ShockLance"] =  $InvBanList["CTF", "ShockLance"];
+      $InvBanDef["CTF", "MissileLauncher"] =  $InvBanList["CTF", "MissileLauncher"];
 
-         $InvBanDef["CTF", "CloakingPack"] =  $InvBanList["CTF", "CloakingPack"];
-         $InvBanDef["CTF", "SatchelCharge"] =  $InvBanList["CTF", "SatchelCharge"];
-         $InvBanDef["CTF", "ELFBarrelPack"] =  $InvBanList["CTF", "ELFBarrelPack"];
-         $InvBanDef["CTF", "MortarBarrelPack"] =  $InvBanList["CTF", "MortarBarrelPack"];
-         $InvBanDef["CTF", "PlasmaBarrelPack"] =  $InvBanList["CTF", "PlasmaBarrelPack"];
-         $InvBanDef["CTF", "AABarrelPack"] =  $InvBanList["CTF", "AABarrelPack"];
-         $InvBanDef["CTF", "MissileBarrelPack"] =  $InvBanList["CTF", "MissileBarrelPack"];
+      $InvBanDef["CTF", "CloakingPack"] =  $InvBanList["CTF", "CloakingPack"];
+      $InvBanDef["CTF", "SatchelCharge"] =  $InvBanList["CTF", "SatchelCharge"];
+      $InvBanDef["CTF", "ELFBarrelPack"] =  $InvBanList["CTF", "ELFBarrelPack"];
+      $InvBanDef["CTF", "MortarBarrelPack"] =  $InvBanList["CTF", "MortarBarrelPack"];
+      $InvBanDef["CTF", "PlasmaBarrelPack"] =  $InvBanList["CTF", "PlasmaBarrelPack"];
+      $InvBanDef["CTF", "AABarrelPack"] =  $InvBanList["CTF", "AABarrelPack"];
+      $InvBanDef["CTF", "MissileBarrelPack"] =  $InvBanList["CTF", "MissileBarrelPack"];
 
-         $InvBanDef["CTF", "FlashGrenade"] =  $InvBanList["CTF", "FlashGrenade"];
-         $InvBanDef["CTF", "ConcussionGrenade"] =  $InvBanList["CTF", "ConcussionGrenade"];
-         $InvBanDef["CTF", "FlareGrenade"] =  $InvBanList["CTF", "FlareGrenade"];
-         $InvyBanDef = 1;
-      }
+      $InvBanDef["CTF", "FlashGrenade"] =  $InvBanList["CTF", "FlashGrenade"];
+      $InvBanDef["CTF", "ConcussionGrenade"] =  $InvBanList["CTF", "ConcussionGrenade"];
+      $InvBanDef["CTF", "FlareGrenade"] =  $InvBanList["CTF", "FlareGrenade"];
 
       $InvBanList["CTF", "ShockLance"] = 1;
       $InvBanList["CTF", "MissileLauncher"] = 1;
@@ -508,25 +513,25 @@ function T1TargetingLaserImage::onUnmount(%this,%obj,%slot){
    Parent::onUnmount(%this, %obj, %slot);
 }
 function TargetingLaser::onUse(%data, %obj){
-    if(Game.weaponOnUse(%data, %obj)){
-       if (%obj.getDataBlock().className $= Armor){
-         if(isObject(StarsiegeTribesMap) && (StarsiegeTribesMap.teamOnly == %player.team || !StarsiegeTribesMap.teamOnly)){
-            %obj.mountImage(T1TargetingLaserImage, $WeaponSlot);
-         }
-         else{
-            %obj.mountImage(TargetingLaserImage, $WeaponSlot);  
-         }
-       }
-    }
- }
- 
- function TargetingLaser::onThrow(%data,%obj,%plr){
-   //parent::onThrow(%data,%obj,%plr);
+   // Off a retro map, or on the T2 side of a team-only one, this is the stock laser:
+   // Weapon::onUse through Parent::, so anything hooking it still runs.
+   if(!isObject(StarsiegeTribesMap) || (StarsiegeTribesMap.teamOnly && StarsiegeTribesMap.teamOnly != %obj.team)){
+      Parent::onUse(%data, %obj);
+      return;
+   }
+   if(Game.weaponOnUse(%data, %obj) && %obj.getDataBlock().className $= Armor)
+      %obj.mountImage(T1TargetingLaserImage, $WeaponSlot);
+}
+
+function TargetingLaser::onThrow(%data,%obj,%plr){
+   // ItemData::onThrow plays the throw sound and schedules the pop. Skipping it left
+   // every laser dropped on death lying there until the map ended, on every map.
+   Parent::onThrow(%data,%obj,%plr);
    if(isObject(%obj) && isObject(StarsiegeTribesMap)){
       %obj.setDataBlock(T1TargetingLaser);
       %plr.unmountImage($WeaponSlot);
    }
- }
+}
 
 function giveTargetLaser(){
    %player = LocalClientConnection.player; 
@@ -4884,24 +4889,8 @@ datablock AudioProfile(t1RepairPackFireSound)
    preload = true;
 };
 
-//--------------------------------------------------------------------------
-// Projectile
-
-datablock RepairProjectileData(DefaultRepairBeam)
-{
-   sound = RepairPackFireSound;
-
-   beamRange      = 10;
-   beamWidth      = 0.15;
-   numSegments    = 20;
-   texRepeat      = 0.20;
-   blurFreq       = 10.0;
-   blurLifetime   = 1.0;
-   cutoffAngle    = 25.0;
-   
-   textures[0]   = "special/redbump2";
-   textures[1]   = "special/redflare";
-};
+// The beam is the stock DefaultRepairBeam (packs/repairpack.cs). It used to be
+// redefined here with the same values, which would override any change to it there.
 
 
 //-------------------------------------------------------------------------
@@ -5302,7 +5291,7 @@ function t1RepairGunImage::onRepair(%this,%obj,%slot)
                // no need for a projectile, just send a message and up the repair rate
                messageClient(%obj.client, 'MsgRepairPackPlayerSelfRepair', '\c2Repairing self.');
                %obj.selfRepairing = true;
-               startRepairing(%obj, true);
+               t1StartRepairing(%obj, true);
             }
          }
          else
@@ -5378,7 +5367,7 @@ function t1RepairGunImage::onRepair(%this,%obj,%slot)
                   else
                      %tgtName = %repTgt.getDatablock().getName();
                   messageClient(%obj.client, 'MsgRepairPackRepairingObj', '\c2Repairing %1.', %tgtName, %repTgt);
-                  startRepairing(%obj, false);
+                  t1StartRepairing(%obj, false);
                }
                else
                {
@@ -5393,7 +5382,7 @@ function t1RepairGunImage::onRepair(%this,%obj,%slot)
                      else
                         %tgtName = %repTgt.getDatablock().getName();
                      messageClient(%obj.client, 'MsgRepairPackRepairingObj', '\c2Repairing %1.', %tgtName, %repTgt);
-                     startRepairing(%obj, false);
+                     t1StartRepairing(%obj, false);
                   }
                }
                // z0dd - ZOD, 8/9/03. It's enabled, award points
@@ -5443,97 +5432,33 @@ function t1RepairGunImage::onDeactivate(%this,%obj,%slot)
    stopRepairing(%obj);
 }
 
-function stopRepairing(%player)
+// The T1 gun runs the stock startRepairing/stopRepairing from packs/repairpack.cs.
+// This file used to replace both (same bodies, reading t1RepairGunImage's rates),
+// which put the stock repair pack on the T1 numbers on every map. Now the stock call
+// runs untouched and the rate it applied is swapped for the T1 gun's; stopRepairing
+// takes off %player.repairingRate, so it still removes exactly what went on.
+function t1StartRepairing(%player, %self)
 {
-   // %player = the player who was using the repair pack
-
-   if(%player.selfRepairing)
-   {
-      // there is no projectile for self-repairing
-      %player.setRepairRate(%player.getRepairRate() - %player.repairingRate);
-      %player.selfRepairing = false;
-   }
-   else if(%player.repairing > 0)
-   {
-      // player was repairing something else
-      //if(%player.repairing.beingRepaired > 0)
-      //{
-         // don't decrement this stuff if it's already at 0 -- though it shouldn't be
-         //%player.repairing.beingRepaired--;
-         %player.repairing.setRepairRate(%player.repairing.getRepairRate() - %player.repairingRate);
-      //}
-      if(%player.repairProjectile > 0)
-      {
-         // is there a repair projectile? delete it
-         %player.repairProjectile.delete();
-         %player.repairProjectile = 0;
-      }
-   }
-   %player.repairing = 0;
-   %player.repairingRate = 0;
-   %player.setImageTrigger($WeaponSlot, false);
-   %player.setImageLoaded($WeaponSlot, false);
-}
-
-function startRepairing(%player, %self)
-{
-   // %player = the player who was using the repair pack
-   // %self = boolean -- is player repairing him/herself?
-
-   if(%self)
-   {
-      // one repair, hold the projectile
-      %player.setRepairRate(%player.getRepairRate() + t1RepairGunImage.repairFactorPlayer);
-      %player.selfRepairing = true;
-      %player.repairingRate = t1RepairGunImage.repairFactorPlayer;
-   }
+   startRepairing(%player, %self);
+   %target = %self ? %player : %player.repairing;
+   if(!isObject(%target))
+      return;
+   if(%self || %target.getClassName() $= Player)
+      %rate = t1RepairGunImage.repairFactorPlayer;
    else
-   {
-      //if(%player.repairing.beingRepaired $= "")
-      //   %player.repairing.beingRepaired = 1;
-      //else
-      //   %player.repairing.beingRepaired++;
-
-      //AI hack...
-      if (%player.client.isAIControlled() && %player.client.repairObject == %player.repairing)
-      {
-         %initialPosition  = %player.getMuzzlePoint($WeaponSlot);
-         %initialDirection = VectorSub(%initialPosition, %player.repairing.getWorldBoxCenter());
-      }
-      else
-      {
-         %initialDirection = %player.getMuzzleVector($WeaponSlot);
-         %initialPosition  = %player.getMuzzlePoint($WeaponSlot);
-      }
-      if(%player.repairing.getClassName() $= Player)
-         %repRate = t1RepairGunImage.repairFactorPlayer;
-      else
-         %repRate = t1RepairGunImage.repairFactorObject;
-      %player.repairing.setRepairRate(%player.repairing.getRepairRate() + %repRate);
- 
-      %player.repairingRate = %repRate;
-      %player.repairProjectile = new RepairProjectile() {
-         dataBlock = DefaultRepairBeam;
-         initialDirection = %initialDirection;
-         initialPosition  = %initialPosition;
-         sourceObject     = %player;
-         sourceSlot       = $WeaponSlot;
-         targetObject     = %player.repairing;
-      };
-      // ----------------------------------------------------
-      // z0dd - ZOD, 5/27/02. Fix lingering projectile bug
-      if(isObject(%player.lastProjectile))
-         %player.lastProjectile.delete();
-
-      %player.lastProjectile = %player.repairProjectile;
-      // End z0dd - ZOD 
-      // ----------------------------------------------------
-      MissionCleanup.add(%player.repairProjectile);
-   }
+      %rate = t1RepairGunImage.repairFactorObject;
+   %target.setRepairRate(%target.getRepairRate() - %player.repairingRate + %rate);
+   %player.repairingRate = %rate;
 }
 
 function serverCmdClientPickVeh(%client, %callName, %index){
-   call(%callName, %client, %index);   
+   // %callName is whatever the client echoes back from PickVehMenu. It used to go
+   // straight into call(), so any player could run any server function by name --
+   // commandToServer('ClientPickVeh', "quit") shut the server down. buyT1Veh is the
+   // only name the server ever sends.
+   if(%callName !$= "buyT1Veh" || !isObject(StarsiegeTribesMap) || !isObject(%client.player.atVPad))
+      return;
+   buyt1Veh(%client, %index);
 }
 
 
@@ -6644,7 +6569,6 @@ package StarsiegeTribes{// annoyingly had to use package do to fixed use of name
          else if(%data $= Grenade && %this.inv[T1CameraGrenade] > 0) {
             %data = T1CameraGrenade;
          }
-         error("ShapeBase::use: data = "@%data@" inv = "@%this.inv[%data.getName()]);
          // default case
          if (%this.inv[%data.getName()] > 0) {
             %data.onUse(%this);
@@ -8102,6 +8026,10 @@ function t1IsFlag(%obj){
    return (%n $= "Flag" || %n $= "T1Flag");
 }
 
+function t1ResetFlagStatsWait(%player){
+   %player.flagStatsWait = false;
+}
+
 function t1RetroFlagOn(%team){
    if(!$T1RetroFlag)
       return false;
@@ -8168,7 +8096,9 @@ function t1CollectFlags(%group){
          t1CollectFlags(%o);
          continue;
       }
-      if(!isObject(%o.getDataBlock()))
+      // only Items have a datablock to ask about; MissionArea, Sky, Sun and the
+      // NavigationGraph print "Unknown command getDataBlock" on every retry
+      if(%o.getClassName() !$= "Item")
          continue;
       if(%o.getDataBlock().getName() $= "Flag" && t1RetroTeam(%o.team)){
          $T1FlagTodo[$T1FlagTodoCount] = %o;
@@ -8248,41 +8178,40 @@ package T1RetroFlagPkg{
       schedule(500, 0, "t1SwapFlags");
    }
 
-   // THROWING. ShapeBase::throwObject (inventory.cs:435) special-cases the flag THREE
+   // THROWING. ShapeBase::throwObject (inventory.cs) special-cases the flag THREE
    // times by literal datablock name, and a T1Flag matches none of them:
    //
-   //   :444  clears %obj.static, so the anti-hover hack lets the flag be thrown at all
-   //   :455  corpse throws use a random vector -- except for flags
-   //   :478  scales the impulse x75 (flags have huge mass so shots do not punt them),
-   //         AND sets flagTossWait, the 1-second grab delay
+   //   - clears %obj.static, so the anti-hover hack lets the flag be thrown at all
+   //   - corpse throws use a random vector -- except for flags
+   //   - scales the impulse x75 (flags have huge mass so shots do not punt them),
+   //     AND sets flagTossWait, the 1-second grab delay
    //
    // Missing the last one is why the flag could not be thrown and was instantly
    // re-collected: no impulse scale, so it barely moved, and no toss delay, so the
    // thrower picked it straight back up.
    //
-   // Copied from this install's inventory.cs with those three tests widened via
-   // t1IsFlag. Everything else is byte-for-byte the stock body.
+   // So the T1 flag gets its own copy of the flag path, following Classic's current
+   // inventory.cs (collision search for all four CTF types, the AntiLou stats delay,
+   // collision timeout set before the move). EVERYTHING ELSE goes to Parent::. This
+   // package activates after autoexec, so the old full copy hid Classic's own version
+   // and flagTunnelingFix's hook on every map. flagTunnelingFix only acts on the
+   // stock "Flag", so a T1 flag gets no tunnel fix either way.
    function ShapeBase::throwObject(%this, %obj){
+      if(!isObject(%obj) || %obj.getDataBlock().getName() !$= "T1Flag"){
+         Parent::throwObject(%this, %obj);
+         return;
+      }
       if(!$MatchStarted)
          return;
 
-      if(t1IsFlag(%obj)){
-         %obj.static = false;
-         if(Game.Class $= CTFGame || Game.Class $= PracticeCTFGame)
-            %obj.searchSchedule = Game.schedule(10, "startFlagCollisionSearch", %obj);
-      }
+      %obj.static = false;
+      if(Game.Class $= CTFGame || Game.Class $= PracticeCTFGame || Game.Class $= SCtFGame || Game.Class $= LCTFGame)
+         %obj.searchSchedule = Game.schedule(10, "startFlagCollisionSearch", %obj);
 
+      // flags always go along the eye vector, corpse or not
       %srcCorpse = (%this.getState() $= "Dead");
-      if (%srcCorpse && !t1IsFlag(%obj))
-      {
-         %vec = (-1.0 + getRandom() * 2.0) SPC (-1.0 + getRandom() * 2.0) SPC getRandom();
-         %vec = vectorScale(%vec, 10);
-      }
-      else
-      {
-         %eye = %this.getEyeVector();
-         %vec = vectorScale(%eye, 20);
-      }
+      %eye = %this.getEyeVector();
+      %vec = vectorScale(%eye, 20);
 
       %dot = vectorDot("0 0 1", %eye);
       if (%dot < 0)
@@ -8292,19 +8221,18 @@ package T1RetroFlagPkg{
       %vec = vectorAdd(%vec, %this.getVelocity());
       %pos = getBoxCenter(%this.getWorldBox());
 
-      if (t1IsFlag(%obj))
-      {
-         %vec = vectorScale(%vec, (%srcCorpse ? 40 : 75));
-         %this.flagTossWait = true;
-         %this.schedule(1000, resetFlagTossWait);
-      }
+      %vec = vectorScale(%vec, (%srcCorpse ? 40 : 75));
+      %this.flagTossWait = true;
+      %this.schedule(1000, resetFlagTossWait);
+      // our own reset: older inventory.cs has no Player::resetFlagStatsWait
+      %this.flagStatsWait = true;
+      schedule(5000, %this, "t1ResetFlagStatsWait", %this);
 
+      %obj.setCollisionTimeout(%this);
       %obj.setTransform(%pos);
       %obj.applyImpulse(%pos, %vec);
-      %obj.setCollisionTimeout(%this);
-      %data = %obj.getDatablock();
 
-      %data.onThrow(%obj, %this);
+      %obj.getDataBlock().onThrow(%obj, %this);
 
       AIThrowObject(%obj);
    }

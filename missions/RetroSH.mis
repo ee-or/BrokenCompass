@@ -11,12 +11,18 @@
 //Map by DarkTiger
 //--- MISSION STRING END ---
 if(!$Host::DMP2StarSeigeTribes){ 
+	// The engine loads the spawn points as terrains/<$CurrentMission>.spn, so name
+	// the stand-in map while it loads, or it spawns players on this map's points.
+	$T1RealMission = $CurrentMission;
 	if(isFile("missions/TWL_Stonehenge.mis")){
+		$CurrentMission = "TWL_Stonehenge";
 		exec("missions/TWL_Stonehenge.mis");
 	}
 	else{
+		$CurrentMission = "Stonehenge_nef";
 		exec("missions/Stonehenge_nef.mis");
 	}
+	$CurrentMission = $T1RealMission;
 	messageAll('MsgClient', "\c2Starsiege tribes data is disabled. Loading default mission instead.");
 	return;
 }

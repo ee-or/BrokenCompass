@@ -1,3 +1,9 @@
+// Unset counts as enabled; only an explicit 0 in the prefs turns this off.
+// Set here, before this file or the map checks it, so a plain
+// if(!$Host::DMP2TwinDrakes) works everywhere.
+if($Host::DMP2TwinDrakes $= "")
+   $Host::DMP2TwinDrakes = 1;
+
 $dragon::fireTime = 1000 * 20;
 $dragon::burn = 0;//leave zero
 $dragon::burnBoltEnable = 0; // enable burning on dragon bolt

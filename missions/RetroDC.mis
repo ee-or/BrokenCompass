@@ -13,12 +13,18 @@
 //--- MISSION STRING END ---
 
 if(!$Host::DMP2StarSeigeTribes){ 
+	// The engine loads the spawn points as terrains/<$CurrentMission>.spn, so name
+	// the stand-in map while it loads, or it spawns players on this map's points.
+	$T1RealMission = $CurrentMission;
 	if(isFile("missions/TWL_DangerousCrossing.mis")){
+		$CurrentMission = "TWL_DangerousCrossing";
 		exec("missions/TWL_DangerousCrossing.mis");
 	}
 	else{
+		$CurrentMission = "DangerousCrossing_nef";
 		exec("missions/DangerousCrossing_nef.mis");
 	}
+	$CurrentMission = $T1RealMission;
 	messageAll('MsgClient', "\c2Starsiege tribes data is disabled. Loading default mission instead.");
 	return;
 }
